@@ -1,3 +1,4 @@
+import 'package:e_warung/screens/dashboard.dart';
 import 'package:e_warung/screens/register.dart';
 import 'package:flutter/material.dart';
 
@@ -70,20 +71,27 @@ class _State extends State<Login> {
                       onPressed: () {
                         print(nameController.text);
                         print(passwordController.text);
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Dashboard()),
+                        );
                       },
                     )),
                 Container(
                     child: Row(
                   children: <Widget>[
-                    Text('Does not have account?'),
+                    Text('Belum punya akun?'),
                     FlatButton(
                       textColor: Colors.blue,
                       child: Text(
-                        'Sign in',
+                        'Daftar Disini',
                         style: TextStyle(fontSize: 20),
                       ),
                       onPressed: () {
-                        //
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Register()),
+                        );
                       },
                     )
                   ],
