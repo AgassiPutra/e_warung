@@ -15,8 +15,19 @@ class Respon extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              Text('Nama Produk'),
-              Text('Warung x meminta penambahan stok pada produk y'),
+              Card(
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: const <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.store, size: 50),
+                      title: Text('Nama Produk'),
+                      subtitle: Text(
+                          'Warung x meminta penambahan stok pada produk y'),
+                    ),
+                  ],
+                ),
+              ),
               ListView.builder(
                   physics: const BouncingScrollPhysics(
                       parent: AlwaysScrollableScrollPhysics()),
