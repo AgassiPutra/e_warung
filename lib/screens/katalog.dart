@@ -1,20 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class Home extends StatelessWidget {
+  const Home({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        resizeToAvoidBottomInset: false,
         appBar: AppBar(
             title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Container(
               padding: const EdgeInsets.all(8.0),
-              child: Padding(
+              child: const Padding(
                 padding: EdgeInsets.all(50.0),
                 child: Text(
-                  'BERANDA',
+                  'Katalog',
                   style: TextStyle(color: Colors.white),
                   textAlign: TextAlign.center,
                 ),
@@ -22,65 +26,32 @@ class Home extends StatelessWidget {
             ),
           ],
         )),
-        body: Container(
-          child: Column(
-            children: <Widget>[
-              Image.asset(
-                'assets/tunas.png',
-              ),
-              Text(
-                'Berita & Pengumuman',
-                style: TextStyle(
-                  fontSize: 22,
-                  height: 2.0,
-                  color: Colors.black,
-                  fontFamily: "Roboto",
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-              Container(
-                child: SizedBox(
-                  height: 130,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      Container(
-                        width: 130.0,
-                        child: Center(
-                          child: Image.network(
-                              'https://perumdatunas.com/storage/GambarBerita/jLUZmC9enzNqlowLEPHWK8BlGRTlSBSg7VbMqDbg.jpg'),
-                        ),
-                      ),
-                      Container(
-                        width: 130.0,
-                        child: Center(
-                          child: Image.network(
-                              'https://perumdatunas.com/storage/GambarBerita/OIY0g7IpwgkSVCXUXp5PEONPly8qQdSKpVcmiKha.jpg'),
-                        ),
-                      ),
-                      Container(
-                        width: 130.0,
-                        child: Center(
-                          child: Image.network(
-                              'https://perumdatunas.com/storage/GambarBerita/yp1bz3qzGFjzsisFzDayqWtMG2tksYpOD845Qc42.jpg'),
-                        ),
-                      ),
-                      Container(
-                        width: 130.0,
-                        child: Center(
-                          child: Image.network(
-                              'https://perumdatunas.com/storage/GambarBerita/6p50howvS3cGUsLHoYwjDaijj7fsKuNH390PyPO9.jpg'),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-            ],
-          ),
+        body: Stack(
+          fit: StackFit.expand,
+          children: [
+            buildListViewbyIndex(),
+          ],
         ),
       ),
       debugShowCheckedModeBanner: false,
+    );
+  }
+
+  Widget buildListViewbyIndex() {
+    final List<String> entries = <String>['A', 'B', 'C'];
+    final List<int> colorCodes = <int>[600, 500, 100];
+
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: entries.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+          height: 50,
+          color: Colors.amber[colorCodes[index]],
+          child: Center(child: Text('Produk ${entries[index]}')),
+        );
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
 }
