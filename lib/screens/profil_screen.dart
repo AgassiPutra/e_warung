@@ -6,6 +6,8 @@ import 'package:e_warung/screens/login.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileScreen extends StatefulWidget {
+  const ProfileScreen({Key? key}) : super(key: key);
+
   @override
   MapScreenState createState() => MapScreenState();
 }
@@ -33,9 +35,10 @@ class MapScreenState extends State<ProfileScreen>
 
   @override
   Widget build(BuildContext context) {
-    return new Scaffold(
-        appBar: new AppBar(
-          title: Text('PROFIL'),
+    return Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('PROFIL'),
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
           actions: [
@@ -53,38 +56,38 @@ class MapScreenState extends State<ProfileScreen>
             )
           ],
         ),
-        body: new Container(
+        body: Container(
           color: Colors.white,
-          child: new ListView(
+          child: ListView(
             children: <Widget>[
               Column(
                 children: <Widget>[
-                  new Container(
+                  Container(
                     height: 200.0,
                     color: Colors.blue,
-                    child: new Column(
+                    child: Column(
                       children: <Widget>[
                         Padding(
-                            padding: EdgeInsets.only(left: 20.0, top: 20.0),
-                            child: new Row(
+                            padding:
+                                const EdgeInsets.only(left: 20.0, top: 20.0),
+                            child: Row(
                               crossAxisAlignment: CrossAxisAlignment.start,
                             )),
                         Padding(
                           padding: EdgeInsets.only(top: 20.0),
-                          child:
-                              new Stack(fit: StackFit.loose, children: <Widget>[
-                            new Row(
+                          child: Stack(fit: StackFit.loose, children: <Widget>[
+                            Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: <Widget>[
-                                new Container(
+                                Container(
                                     width: 100.0,
                                     height: 100.0,
-                                    decoration: new BoxDecoration(
+                                    decoration: const BoxDecoration(
                                       shape: BoxShape.circle,
-                                      image: new DecorationImage(
-                                        image: new ExactAssetImage(
-                                            'assets/tunas.png'),
+                                      image: DecorationImage(
+                                        image:
+                                            ExactAssetImage('assets/tunas.png'),
                                         fit: BoxFit.cover,
                                       ),
                                     )),
@@ -95,27 +98,27 @@ class MapScreenState extends State<ProfileScreen>
                       ],
                     ),
                   ),
-                  new Container(
-                    color: Color(0xffFFFFFF),
+                  Container(
+                    color: const Color(0xffFFFFFF),
                     child: Padding(
-                      padding: EdgeInsets.only(bottom: 25.0),
-                      child: new Column(
+                      padding: const EdgeInsets.only(bottom: 25.0),
+                      child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         mainAxisAlignment: MainAxisAlignment.start,
                         children: <Widget>[
                           Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 25.0),
-                              child: new Row(
+                              child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
-                                  new Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      new Text(
+                                    children: const <Widget>[
+                                      Text(
                                         'Informasi Pribadi',
                                         style: TextStyle(
                                             fontSize: 18.0,
@@ -126,16 +129,16 @@ class MapScreenState extends State<ProfileScreen>
                                 ],
                               )),
                           Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 25.0),
-                              child: new Row(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
-                                  new Column(
+                                  Column(
                                     mainAxisAlignment: MainAxisAlignment.start,
                                     mainAxisSize: MainAxisSize.min,
-                                    children: <Widget>[
-                                      new Text(
+                                    children: const <Widget>[
+                                      Text(
                                         'Nama',
                                         style: TextStyle(
                                             fontSize: 16.0,
@@ -146,15 +149,15 @@ class MapScreenState extends State<ProfileScreen>
                                 ],
                               )),
                           Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 2.0),
-                              child: new Row(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 children: <Widget>[
-                                  new Flexible(
-                                    child: new Text(
+                                  Flexible(
+                                    child: Text(
                                       '${userData}',
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                           fontSize: 16.0,
                                           fontWeight: FontWeight.normal),
                                     ),
@@ -162,16 +165,16 @@ class MapScreenState extends State<ProfileScreen>
                                 ],
                               )),
                           Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 25.0),
-                              child: new Row(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
                                   Expanded(
                                     child: Container(
-                                      child: new Text(
-                                        'Jabatan',
+                                      child: const Text(
+                                        'Username',
                                         style: TextStyle(
                                             fontSize: 16.0,
                                             fontWeight: FontWeight.bold),
@@ -182,18 +185,18 @@ class MapScreenState extends State<ProfileScreen>
                                 ],
                               )),
                           Padding(
-                              padding: EdgeInsets.only(
+                              padding: const EdgeInsets.only(
                                   left: 25.0, right: 25.0, top: 2.0),
-                              child: new Row(
+                              child: Row(
                                 mainAxisSize: MainAxisSize.max,
                                 mainAxisAlignment: MainAxisAlignment.start,
                                 children: <Widget>[
                                   Flexible(
                                     child: Padding(
                                       padding: EdgeInsets.only(right: 10.0),
-                                      child: new Text(
+                                      child: Text(
                                         '${userJabatan}',
-                                        style: TextStyle(
+                                        style: const TextStyle(
                                             fontSize: 16.0,
                                             fontWeight: FontWeight.normal),
                                       ),

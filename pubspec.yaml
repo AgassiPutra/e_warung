@@ -36,9 +36,10 @@ dependencies:
   cupertino_icons: ^1.0.2
   shared_preferences: ^2.0.7
   flutter_icons: ^1.1.0
-  http: ^0.12.0+2
+  http: ^0.13.3
   provider: ^6.0.0
   material_floating_search_bar: ^0.3.4
+  flappy_search_bar: ^1.7.2
 
 dev_dependencies:
   flutter_test:

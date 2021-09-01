@@ -27,7 +27,7 @@ class _State extends State<Login> {
           ),
         ),
         body: Padding(
-            padding: EdgeInsets.only(top: 200.0),
+            padding: EdgeInsets.only(top: 150.0),
             child: ListView(
               children: <Widget>[
                 Container(

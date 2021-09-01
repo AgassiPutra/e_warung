@@ -7,30 +7,34 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-            title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Container(
-              padding: const EdgeInsets.all(8.0),
-              child: const Padding(
-                padding: EdgeInsets.all(50.0),
-                child: Text(
-                  'Katalog',
-                  style: TextStyle(color: Colors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ],
-        )),
-        body: Stack(
-          fit: StackFit.expand,
-          children: [
-            buildListViewbyIndex(),
-          ],
+      home: DefaultTabController(
+        length: 2,
+        child: Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            bottom: const TabBar(tabs: [
+              Tab(text: 'PRODUK'),
+              // Tab(icon: Icon(Icons.production_quantity_limits)),
+              Tab(text: 'KATEGORI'),
+            ]),
+            title: const Text('KATALOG'),
+          ),
+          body: TabBarView(
+            children: [
+              buildListViewbyIndex(),
+              Text('Kategori'),
+            ],
+          ),
+          floatingActionButton: FloatingActionButton(
+            onPressed: () {
+              // Navigator.push(
+              //   context,
+              //   MaterialPageRoute(builder: (context) => AddProduct()),
+              // );
+            },
+            child: Icon(Icons.add),
+            backgroundColor: Colors.blue,
+          ),
         ),
       ),
       debugShowCheckedModeBanner: false,
@@ -46,9 +50,9 @@ class Home extends StatelessWidget {
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          height: 50,
+          height: 80,
           color: Colors.amber[colorCodes[index]],
-          child: Center(child: Text('Produk ${entries[index]}')),
+          child: Center(child: Text('Makanan ${entries[index]}')),
         );
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),

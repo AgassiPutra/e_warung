@@ -1,5 +1,7 @@
-import 'package:e_warung/screens/profil.dart';
+import 'package:e_warung/screens/list_warung.dart';
+import 'package:e_warung/screens/notifikasi.dart';
 import 'package:e_warung/screens/katalog.dart';
+import 'package:e_warung/screens/profil_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:e_warung/util/const.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +31,8 @@ class _NavBarState extends State<NavBar> {
   int _selectedNavbar = 0;
   final List<Widget> _children = [
     Home(),
+    ListWarung(),
+    Notifikasi(),
     ProfileScreen(),
   ];
 
@@ -57,7 +61,7 @@ class _NavBarState extends State<NavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            title: Text('Notification'),
+            title: Text('Notifikasi'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
