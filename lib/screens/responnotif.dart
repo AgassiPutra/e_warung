@@ -18,7 +18,8 @@ class Respon extends StatelessWidget {
               Text('Nama Produk'),
               Text('Warung x meminta penambahan stok pada produk y'),
               ListView.builder(
-                  physics: const AlwaysScrollableScrollPhysics(),
+                  physics: const BouncingScrollPhysics(
+                      parent: AlwaysScrollableScrollPhysics()),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemCount: myProducts.length,
