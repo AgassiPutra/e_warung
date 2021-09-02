@@ -12,9 +12,9 @@ class Home extends StatelessWidget {
           title: Row(
             children: [
               Container(
-                padding: const EdgeInsets.all(8.0),
+                padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
                 child: const Padding(
-                  padding: EdgeInsets.all(50.0),
+                  padding: EdgeInsets.all(5.0),
                   child: Text(
                     'Beranda',
                     style: TextStyle(color: Colors.white),
@@ -27,11 +27,103 @@ class Home extends StatelessWidget {
         ),
         body: Column(
           children:[
-            Card(
+            buttonPenjualan(),
+            Container(
+              padding: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child:Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Text('Fitur',style: TextStyle(fontSize: 20)),
+                  Text('Permudah kelola warung anda dengan fitur pilihan',style: TextStyle(fontSize: 12,color: Colors.grey))
+                ],
+              ),
+            ),
+            Container(
+              padding:EdgeInsets.fromLTRB(10, 15, 10, 20),
+              child:Card(
+                child:Container(
+                  padding: EdgeInsets.all(10),
+                  child:Column(
+                    children:[
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.add_shopping_cart),
+                          Container(
+                            width: 225,
+                            height:70,
+                            child:Column(
+                              crossAxisAlignment:CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:[
+                                Text('Tambah Produk Anda',style:TextStyle(fontSize:14)),
+                                Text('Isi stok produk anda dengan produk baru dari Perumda Tunas',style:TextStyle(color:Colors.grey,fontSize:12)),
+                              ]
+                            ),
+                          ),   
+                          Icon(Icons.arrow_forward_ios),
+                        ]
+                      ),
+                      Divider(
+                        height:5,
+                        thickness: 1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.iso),
+                          Container(
+                            width: 225,
+                            height:70,
+                            child:Column(
+                              crossAxisAlignment:CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:[
+                                Text('Atur Batas minimal stok',style:TextStyle(fontSize:14)),
+                                Text('Batasi minimal stok untuk mendapatkan notif jika stok menipis',style:TextStyle(color:Colors.grey,fontSize:12)),
+                              ]
+                            ),
+                          ),   
+                          Icon(Icons.arrow_forward_ios),
+                        ]
+                      ),
+                      Divider(
+                        height:5,
+                        thickness: 1,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Icon(Icons.receipt_long),
+                          Container(
+                            width: 225,
+                            height:70,
+                            child:Column(
+                              crossAxisAlignment:CrossAxisAlignment.start,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children:[
+                                Text('Lihat Transaksi',style:TextStyle(fontSize:14)),
+                                Text('Pantau hasil penjualan anda per harinya',style:TextStyle(color:Colors.grey,fontSize:12)),
+                              ]
+                            ),
+                          ),   
+                          Icon(Icons.arrow_forward_ios),
+                      ],)
+                    ]
+                  )
+                )
+              )
+            ),
+            
+          ])
+        ));
+  }
+  Widget buttonPenjualan(){
+    return Card(
               child: Container(
                 padding:EdgeInsets.all(10.0),
                 child :Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     Icon(Icons.shopping_bag),
                     Column(children: [Text('Penjualan',style: TextStyle(color: Colors.grey)),Text('Sep 2021')],),
@@ -39,10 +131,9 @@ class Home extends StatelessWidget {
                     Icon(Icons.arrow_forward_ios)
                   ],
                 )
-              )
-            ),
-          ])
-        ));
+              ),
+              margin: EdgeInsets.fromLTRB(10, 20, 10, 30),
+            );
   }
 }
 
