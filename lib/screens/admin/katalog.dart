@@ -4,6 +4,7 @@ import 'package:e_warung/screens/admin/tambahproduk.dart';
 import 'package:e_warung/screens/admin/updatekategori.dart';
 import 'package:e_warung/screens/admin/updateproduk.dart';
 import 'package:e_warung/screens/admin/warungproduk.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
@@ -61,7 +62,8 @@ class _HomeState extends State<Home> {
                       MaterialPageRoute(builder: (context) => TambahKategori()),
                     );
                   },
-                  child: Icon(Icons.add),
+                  child: Icon(CupertinoIcons.add),
+                  backgroundColor: Colors.blue,
                 ),
         ),
       ),
