@@ -1,3 +1,4 @@
+import 'package:e_warung/screens/admin/warungproduk.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
@@ -31,10 +32,19 @@ class ListWarung extends StatelessWidget {
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-          height: 100,
-          color: Colors.amber[colorCodes[index]],
-          child: Center(child: Text('Warung ${entries[index]}')),
-        );
+            height: 100,
+            child: Card(
+              color: Colors.amber[colorCodes[index]],
+              child: FlatButton(
+                onPressed: () async {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => WarungProduk()),
+                  );
+                },
+                child: Text('Warung ${entries[index]}'),
+              ),
+            ));
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );

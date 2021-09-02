@@ -1,7 +1,7 @@
-import 'package:e_warung/screens/list_warung.dart';
-import 'package:e_warung/screens/notifikasi.dart';
-import 'package:e_warung/screens/katalog.dart';
-import 'package:e_warung/screens/profil_screen.dart';
+import 'package:e_warung/screens/admin/list_warung.dart';
+import 'package:e_warung/screens/admin/notifikasi.dart';
+import 'package:e_warung/screens/admin/katalog.dart';
+import 'package:e_warung/screens/admin/profil_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:e_warung/util/const.dart';
 import 'package:shared_preferences/shared_preferences.dart';

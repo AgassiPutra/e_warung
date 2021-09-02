@@ -40,6 +40,7 @@ dependencies:
   provider: ^6.0.0
   material_floating_search_bar: ^0.3.4
   flappy_search_bar: ^1.7.2
+  dropdown_below: ^1.0.0
 
 dev_dependencies:
   flutter_test:

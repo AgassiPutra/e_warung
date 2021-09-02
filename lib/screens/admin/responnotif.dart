@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
@@ -21,7 +22,11 @@ class Respon extends StatelessWidget {
                   children: const <Widget>[
                     ListTile(
                       leading: Icon(Icons.store, size: 50),
-                      title: Text('Nama Produk'),
+                      title: Text(
+                        'Nama Warung',
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 30),
+                      ),
                       subtitle: Text(
                           'Warung x meminta penambahan stok pada produk y'),
                     ),
