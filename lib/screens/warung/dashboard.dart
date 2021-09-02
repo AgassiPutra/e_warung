@@ -48,20 +48,24 @@ class _NavBarState extends State<NavBar> {
         currentIndex: _selectedNavbar,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book),
+            icon: Icon(Icons.home),
+            title: Text('Beranda'),
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list),
             title: Text('Katalog'),
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            title: Text('List Warung'),
+            icon: Icon(Icons.calculate),
+            title: Text('Kasir'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            title: Text('Notification'),
+            title: Text('Notifikasi'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('Akun'),
+            title: Text('Profil'),
           ),
         ],
       ),
