@@ -24,7 +24,18 @@ class _HomeState extends State<Home> {
         length: 2,
         child: Scaffold(
           appBar: AppBar(
-            centerTitle: true,
+            leading: Icon(Icons.search),
+            title: TextFormField(
+              cursorColor: Colors.white,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+              decoration: const InputDecoration(
+                hintText: 'Cari',
+              ),
+            ),
             bottom: TabBar(
                 onTap: (index) {
                   setState(() {
@@ -36,7 +47,6 @@ class _HomeState extends State<Home> {
                   // Tab(icon: Icon(Icons.production_quantity_limits)),
                   Tab(text: 'KATEGORI'),
                 ]),
-            title: const Text('KATALOG'),
           ),
           body: TabBarView(
             children: [
@@ -72,8 +82,8 @@ class _HomeState extends State<Home> {
   }
 
   Widget buildListViewbyIndex() {
-    final List<String> entries = <String>['A', 'B', 'C'];
-    final List<int> colorCodes = <int>[600, 500, 100];
+    final List<String> entries = <String>['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    final List<int> colorCodes = <int>[600, 500, 100, 600, 500, 100, 200];
 
     return ListView.separated(
       padding: const EdgeInsets.all(8),
