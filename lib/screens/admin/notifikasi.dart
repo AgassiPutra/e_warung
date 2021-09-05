@@ -25,8 +25,6 @@ class Notifikasi extends StatelessWidget {
 
   Widget buildListViewbyIndex() {
     final List<String> entries = <String>['A', 'B', 'C'];
-    final List<int> colorCodes = <int>[600, 500, 100];
-
     return ListView.separated(
       padding: const EdgeInsets.all(8),
       itemCount: entries.length,
@@ -34,7 +32,6 @@ class Notifikasi extends StatelessWidget {
         return Container(
             height: 100,
             child: Card(
-              color: Colors.amber[colorCodes[index]],
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(10.0),
               ),

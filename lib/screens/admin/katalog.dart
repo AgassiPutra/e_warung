@@ -83,7 +83,6 @@ class _HomeState extends State<Home> {
 
   Widget buildListViewbyIndex() {
     final List<String> entries = <String>['A', 'B', 'C', 'D', 'E', 'F', 'G'];
-    final List<int> colorCodes = <int>[600, 500, 100, 600, 500, 100, 200];
 
     return ListView.separated(
       padding: const EdgeInsets.all(8),
@@ -119,7 +118,6 @@ class _HomeState extends State<Home> {
 
   Widget buildListViewbyIndexKategori() {
     final List<String> entries = <String>['A', 'B', 'C'];
-    final List<int> colorCodes = <int>[600, 500, 100];
 
     return ListView.separated(
       padding: const EdgeInsets.all(8),
@@ -128,7 +126,6 @@ class _HomeState extends State<Home> {
         return Container(
             height: 100,
             child: Card(
-              color: Colors.amber[colorCodes[index]],
               child: FlatButton(
                 onPressed: () async {
                   Navigator.push(
@@ -137,39 +134,22 @@ class _HomeState extends State<Home> {
                         builder: (context) => const UpdateKategori()),
                   );
                 },
-                child: Text('Kategori ${entries[index]}'),
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ListTile(
+                        leading: Icon(Icons.menu),
+                        title: Text('Kategori ${entries[index]}'),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ));
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
-
-  //   Widget buildListViewbyIndex() {
-  //   final List<String> entries = <String>['A', 'B', 'C'];
-  //   final List<int> colorCodes = <int>[600, 500, 100];
-
-  //   return ListView.separated(
-  //     padding: const EdgeInsets.all(8),
-  //     itemCount: entries.length,
-  //     itemBuilder: (BuildContext context, int index) {
-  //       return Container(
-  //           height: 100,
-  //           child: Card(
-  //             color: Colors.amber[colorCodes[index]],
-  //             child: FlatButton(
-  //               onPressed: () async {
-  //                 Navigator.push(
-  //                   context,
-  //                   MaterialPageRoute(
-  //                       builder: (context) => const UpdateProduk()),
-  //                 );
-  //               },
-  //               child: Text('Produk ${entries[index]}'),
-  //             ),
-  //           ));
-  //     },
-  //     separatorBuilder: (BuildContext context, int index) => const Divider(),
-  //   );
-  // }
+  // child: Text('Kategori ${entries[index]}'),
 }

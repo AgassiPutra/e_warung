@@ -38,8 +38,7 @@ class WarungProduk extends StatelessWidget {
                 ),
               ),
               ListView.builder(
-                  physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
+                  physics: NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemCount: myProducts.length,
@@ -58,24 +57,4 @@ class WarungProduk extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-
-  // Widget buildListViewbyIndex() {
-  //   final List<String> entries = <String>['A', 'B', 'C'];
-  //   final List<int> colorCodes = <int>[600, 500, 100];
-
-  //   return ListView.separated(
-  //     padding: const EdgeInsets.all(8),
-  //     itemCount: entries.length,
-  //     itemBuilder: (BuildContext context, int index) {
-  //       return Container(
-  //         height: 50,
-  //         color: Colors.amber[colorCodes[index]],
-  //         child: Center(
-  //             child: Text(
-  //                 'Warung meminta tambahan stok pada makanan ${entries[index]}')),
-  //       );
-  //     },
-  //     separatorBuilder: (BuildContext context, int index) => const Divider(),
-  //   );
-  // }
 }

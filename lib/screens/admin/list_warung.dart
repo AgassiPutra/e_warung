@@ -1,5 +1,6 @@
 import 'package:e_warung/screens/admin/warungproduk.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class ListWarung extends StatelessWidget {
@@ -25,16 +26,15 @@ class ListWarung extends StatelessWidget {
 
   Widget buildListViewbyIndex() {
     final List<String> entries = <String>['A', 'B', 'C'];
-    final List<int> colorCodes = <int>[600, 500, 100];
 
     return ListView.separated(
+      physics: NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.all(8),
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
             height: 100,
             child: Card(
-              color: Colors.amber[colorCodes[index]],
               child: FlatButton(
                 onPressed: () async {
                   Navigator.push(
@@ -42,7 +42,22 @@ class ListWarung extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => WarungProduk()),
                   );
                 },
-                child: Text('Warung ${entries[index]}'),
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ListTile(
+                        leading: Icon(Icons.store),
+                        title: Text('Warung ${entries[index]}'),
+                        subtitle: Text(
+                          'Stok : x',
+                          style:
+                              TextStyle(color: Colors.black.withOpacity(0.6)),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ),
             ));
       },

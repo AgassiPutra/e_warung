@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class Respon extends StatelessWidget {
-  final myProducts = List<String>.generate(20, (i) => 'Product $i');
+  final myProducts = List<String>.generate(20, (i) => 'Nama Produk $i');
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -34,8 +35,7 @@ class Respon extends StatelessWidget {
                 ),
               ),
               ListView.builder(
-                  physics: const BouncingScrollPhysics(
-                      parent: AlwaysScrollableScrollPhysics()),
+                  physics: NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   itemCount: myProducts.length,
@@ -43,8 +43,32 @@ class Respon extends StatelessWidget {
                     return Card(
                       key: UniqueKey(),
                       child: Padding(
-                          padding: EdgeInsets.all(10),
-                          child: Text(myProducts[index])),
+                        padding: EdgeInsets.all(10),
+                        child: Container(
+                          height: 80,
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              ListTile(
+                                leading: Icon(Icons.store),
+                                title: Text('${myProducts[index]}'),
+                                subtitle: Text(
+                                  'Stok yang diminta : x',
+                                  style: TextStyle(
+                                      color: Colors.black.withOpacity(0.6)),
+                                ),
+                                trailing: Row(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Icon(Icons.cancel),
+                                    Icon(Icons.check),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
                     );
                   }),
             ],
@@ -54,24 +78,4 @@ class Respon extends StatelessWidget {
       debugShowCheckedModeBanner: false,
     );
   }
-
-  // Widget buildListViewbyIndex() {
-  //   final List<String> entries = <String>['A', 'B', 'C'];
-  //   final List<int> colorCodes = <int>[600, 500, 100];
-
-  //   return ListView.separated(
-  //     padding: const EdgeInsets.all(8),
-  //     itemCount: entries.length,
-  //     itemBuilder: (BuildContext context, int index) {
-  //       return Container(
-  //         height: 50,
-  //         color: Colors.amber[colorCodes[index]],
-  //         child: Center(
-  //             child: Text(
-  //                 'Warung meminta tambahan stok pada makanan ${entries[index]}')),
-  //       );
-  //     },
-  //     separatorBuilder: (BuildContext context, int index) => const Divider(),
-  //   );
-  // }
 }
