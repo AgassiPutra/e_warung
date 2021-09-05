@@ -82,7 +82,6 @@ class _HomeState extends State<Home> {
         return Container(
             height: 100,
             child: Card(
-              color: Colors.amber[colorCodes[index]],
               child: FlatButton(
                 onPressed: () async {
                   Navigator.push(
@@ -91,7 +90,16 @@ class _HomeState extends State<Home> {
                         builder: (context) => const UpdateProduk()),
                   );
                 },
-                child: Text('Produk ${entries[index]}'),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.production_quantity_limits),
+                      title: Text('Produk ${entries[index]}'),
+                      subtitle: Text('Harga '),
+                    ),
+                  ],
+                ),
               ),
             ));
       },
@@ -126,4 +134,32 @@ class _HomeState extends State<Home> {
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
+
+  //   Widget buildListViewbyIndex() {
+  //   final List<String> entries = <String>['A', 'B', 'C'];
+  //   final List<int> colorCodes = <int>[600, 500, 100];
+
+  //   return ListView.separated(
+  //     padding: const EdgeInsets.all(8),
+  //     itemCount: entries.length,
+  //     itemBuilder: (BuildContext context, int index) {
+  //       return Container(
+  //           height: 100,
+  //           child: Card(
+  //             color: Colors.amber[colorCodes[index]],
+  //             child: FlatButton(
+  //               onPressed: () async {
+  //                 Navigator.push(
+  //                   context,
+  //                   MaterialPageRoute(
+  //                       builder: (context) => const UpdateProduk()),
+  //                 );
+  //               },
+  //               child: Text('Produk ${entries[index]}'),
+  //             ),
+  //           ));
+  //     },
+  //     separatorBuilder: (BuildContext context, int index) => const Divider(),
+  //   );
+  // }
 }
