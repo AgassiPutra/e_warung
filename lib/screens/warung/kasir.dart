@@ -1,31 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 
-// class Kasir extends StatelessWidget{
-//   const Kasir({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context){
-//     return MaterialApp(
-//       debugShowCheckedModeBanner: false,
-//       home:Scaffold(
-//         appBar: AppBar(
-//           title: Text('Transaksi'),
-//           body
-//         ),
-
-//       )
-//     );
-//   }
-// }
-
-class Product extends StatefulWidget{
-  const Product({Key? key}) : super(key: key);
+class Kasir extends StatefulWidget{
+  const Kasir({Key? key}) : super(key: key);
 
   @override
-  _ProductState createState() => _ProductState();
+  _KasirState createState() => _KasirState();
 }
-class _ProductState extends State<Product>{
+class _KasirState extends State<Kasir>{
   String dropdownValue = 'Semua';
   
   @override
@@ -56,14 +38,14 @@ class _ProductState extends State<Product>{
           ),
           
         ),
-        body: Column(
-          children: [
-            Container(
-              padding: const EdgeInsets.all(10)
-              child:DropdownButton<String>(
+        body: Container(
+          padding: const EdgeInsets.all(10),
+          child:Column(
+            children: [
+              DropdownButtonFormField<String>(
                 value: dropdownValue,
                 icon: const Icon(Icons.arrow_drop_down),
-                iconSize: 14,
+                iconSize: 20,
                 elevation: 16,
                 isExpanded: true,
                 style: const TextStyle(color: Colors.black),
@@ -72,20 +54,53 @@ class _ProductState extends State<Product>{
                     dropdownValue = newValue!;
                   });
                 },
-                items: <String>['Semua', 'Daging', 'Sayur', 'Buah']
-                    .map<DropdownMenuItem<String>>((String value) {
+                decoration: InputDecoration(
+                  border:OutlineInputBorder(),
+                ),
+                items: <String>['Semua', 'Daging', 'Sayur', 'Buah'].map<DropdownMenuItem<String>>((String value) {
                   return DropdownMenuItem<String>(
                     value: value,
                     child: Text(value),
                   );
                 }).toList(),
               ),
-            ),
-            Text(dropdownValue),
+              Expanded(child:listViewProduct())
           ],
+        )
         )
       )
     );
     
   }
+  Widget listViewProduct(){
+    final List<String> entries = <String>['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+
+    return ListView.separated(
+      padding: const EdgeInsets.all(8),
+      itemCount: entries.length,
+      itemBuilder: (BuildContext context, int index) {
+        return Container(
+            height: 100,
+            child: Card(
+              child: FlatButton(
+                onPressed: () async {
+                  print(index);
+                },
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.production_quantity_limits),
+                      title: Text('Produk ${entries[index]}'),
+                      subtitle: Text('Harga '),
+                    ),
+                  ],
+                ),
+              ),
+            ));
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+    );
+  }
+  
 }

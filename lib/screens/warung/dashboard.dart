@@ -34,7 +34,8 @@ class _NavBarState extends State<NavBar> {
   int _selectedNavbar = 0;
   final List<Widget> _children = [
     Home(),
-    Product(),
+    Katalog(),
+    Kasir(),
     ProfileScreen(),
   ];
 
