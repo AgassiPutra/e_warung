@@ -1,8 +1,13 @@
-import 'package:e_warung/screens/warung/profil.dart';
-import 'package:e_warung/screens/warung/beranda.dart';
 import 'package:flutter/material.dart';
 import 'package:e_warung/util/const.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+//import screens
+import 'package:e_warung/screens/warung/profil.dart';
+import 'package:e_warung/screens/warung/beranda.dart';
+import 'package:e_warung/screens/warung/kasir.dart';
+import 'package:e_warung/screens/warung/katalog.dart';
+import 'package:e_warung/screens/warung/notifikasi.dart';
+
 
 class Dashboard extends StatelessWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -29,6 +34,7 @@ class _NavBarState extends State<NavBar> {
   int _selectedNavbar = 0;
   final List<Widget> _children = [
     Home(),
+    Product(),
     ProfileScreen(),
   ];
 
