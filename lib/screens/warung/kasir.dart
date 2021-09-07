@@ -1,4 +1,5 @@
 import "package:flutter/material.dart";
+import "package:sliding_up_panel/sliding_up_panel.dart"
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Kasir extends StatefulWidget{
@@ -38,7 +39,21 @@ class _KasirState extends State<Kasir>{
           ),
           
         ),
-        body: Container(
+        body: SlidingUpPanel(
+          panel: Container(
+            padding: const EdgeInsets.all(10),
+            child: Column(
+              children:[
+                Text("0 Barang"),
+                ListView.separated(
+                  itemBuilder: itemBuilder, 
+                  separatorBuilder: separatorBuilder, 
+                  itemCount: itemCount
+                )
+              ]
+            )
+          ),
+          body: Container(
           padding: const EdgeInsets.all(10),
           child:Column(
             children: [
@@ -66,6 +81,7 @@ class _KasirState extends State<Kasir>{
               ),
               Expanded(child:listViewProduct())
           ],
+        )
         )
         )
       )
