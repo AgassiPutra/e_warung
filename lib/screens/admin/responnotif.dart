@@ -7,8 +7,7 @@ class Respon extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           centerTitle: true,
           title: const Text(' RESPON NOTIFIKASI'),
@@ -87,9 +86,6 @@ class Respon extends StatelessWidget {
                   }),
             ],
           ),
-        ),
-      ),
-      debugShowCheckedModeBanner: false,
-    );
+        ));
   }
 }

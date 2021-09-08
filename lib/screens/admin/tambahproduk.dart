@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:dropdown_below/dropdown_below.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/painting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AddProduct extends StatefulWidget {
@@ -17,19 +18,21 @@ class MapScreenState extends State<AddProduct> {
   TextEditingController stokController = TextEditingController();
 
   List _testList = [
-    {'no': 1, 'keyword': 'Sayur'},
-    {'no': 2, 'keyword': 'Daging'},
-    {'no': 3, 'keyword': 'Buah'},
-    {'no': 4, 'keyword': 'Kerajinan'}
+    {'no': 1, 'keyword': 'Semua'},
+    {'no': 2, 'keyword': 'Sayur'},
+    {'no': 3, 'keyword': 'Daging'},
+    {'no': 4, 'keyword': 'Buah'},
+    {'no': 5, 'keyword': 'Kerajinan'}
   ];
   List<DropdownMenuItem> _dropdownTestItems = [];
   var _selectedTest;
 
   List _testList2 = [
-    {'no': 1, 'keyword': 'Merk1'},
-    {'no': 2, 'keyword': 'Merk2'},
-    {'no': 3, 'keyword': 'Merk3'},
-    {'no': 4, 'keyword': 'Merk4'}
+    {'no': 1, 'keyword': 'Semua'},
+    {'no': 2, 'keyword': 'Merk1'},
+    {'no': 3, 'keyword': 'Merk2'},
+    {'no': 4, 'keyword': 'Merk3'},
+    {'no': 5, 'keyword': 'Merk4'}
   ];
   List<DropdownMenuItem> _dropdownTestItems2 = [];
   var _selectedTest2;
@@ -186,18 +189,14 @@ class MapScreenState extends State<AddProduct> {
             Container(
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                child: RaisedButton(
-                  textColor: Colors.white,
-                  color: Colors.blue,
+                child: TextButton(
                   child: Text('Tambah'),
-                  onPressed: () {
-                    // print(nameController.text);
-                    // print(passwordController.text);
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(builder: (context) => Dashboard()),
-                    // );
-                  },
+                  style: TextButton.styleFrom(
+                    primary: Colors.white,
+                    backgroundColor: Colors.blue,
+                    elevation: 20,
+                  ),
+                  onPressed: () {},
                 )),
           ],
         ),
