@@ -36,6 +36,7 @@ class _NavBarState extends State<NavBar> {
     Home(),
     Katalog(),
     Kasir(),
+    Notifikasi(),
     ProfileScreen(),
   ];
 
