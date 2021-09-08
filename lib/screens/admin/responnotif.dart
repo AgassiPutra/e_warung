@@ -22,7 +22,10 @@ class Respon extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: const <Widget>[
                     ListTile(
-                      leading: Icon(Icons.store, size: 50),
+                      leading: Icon(
+                        Icons.store,
+                        size: 50,
+                      ),
                       title: Text(
                         'Nama Warung',
                         style: TextStyle(
@@ -50,7 +53,8 @@ class Respon extends StatelessWidget {
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               ListTile(
-                                leading: Icon(Icons.store),
+                                leading: Icon(Icons.store,
+                                    color: Colors.blue, size: 50),
                                 title: Text('${myProducts[index]}'),
                                 subtitle: Text(
                                   'Stok yang diminta : x',
@@ -60,8 +64,18 @@ class Respon extends StatelessWidget {
                                 trailing: Row(
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Icon(Icons.cancel),
-                                    Icon(Icons.check),
+                                    IconButton(
+                                      onPressed: () => {},
+                                      icon: const Icon(Icons.cancel),
+                                      iconSize: 30,
+                                      color: Colors.red,
+                                    ),
+                                    IconButton(
+                                      onPressed: () => {},
+                                      icon: const Icon(Icons.check_circle),
+                                      iconSize: 30,
+                                      color: Colors.green,
+                                    ),
                                   ],
                                 ),
                               ),

@@ -82,7 +82,8 @@ class _HomeState extends State<Home> {
   }
 
   Widget buildListViewbyIndex() {
-    final List<String> entries = <String>['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    // final List<String> entries = <String>['A', 'B', 'C', 'D', 'E', 'F', 'G'];
+    final entries = List<String>.generate(1000, (i) => '$i');
 
     return ListView.separated(
       padding: const EdgeInsets.all(8),

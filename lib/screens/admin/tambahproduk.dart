@@ -152,49 +152,27 @@ class MapScreenState extends State<AddProduct> {
                 ),
               ),
             ),
-            Card(
-                shape: StadiumBorder(
-                    side: BorderSide(color: Colors.black, width: 1.0)),
-                child: DropdownBelow(
-                  itemWidth: 200,
-                  itemTextstyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Colors.black),
-                  boxTextstyle: const TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w400,
-                      color: Color(0XFFbbbbbb)),
-                  boxPadding: const EdgeInsets.fromLTRB(13, 12, 0, 12),
-                  boxHeight: 45,
-                  boxWidth: 200,
+            Container(
+                padding: EdgeInsets.all(8),
+                child: Card(
+                    child: DropdownButtonFormField(
+                  isExpanded: true,
                   hint: const Text('Pilih Merk'),
                   value: _selectedTest2,
                   items: _dropdownTestItems2,
                   onChanged: onChangeDropdownTests2,
+                ))),
+            Container(
+                padding: EdgeInsets.all(8),
+                child: Card(
+                  child: DropdownButtonFormField(
+                    isExpanded: true,
+                    hint: const Text('Pilih Kategori'),
+                    value: _selectedTest,
+                    items: _dropdownTestItems,
+                    onChanged: onChangeDropdownTests,
+                  ),
                 )),
-            Card(
-              shape: StadiumBorder(
-                  side: BorderSide(color: Colors.black, width: 1.0)),
-              child: DropdownBelow(
-                itemWidth: 200,
-                itemTextstyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black),
-                boxTextstyle: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w400,
-                    color: Color(0XFFbbbbbb)),
-                boxPadding: const EdgeInsets.fromLTRB(13, 12, 0, 12),
-                boxHeight: 45,
-                boxWidth: 200,
-                hint: const Text('Pilih Kategori'),
-                value: _selectedTest,
-                items: _dropdownTestItems,
-                onChanged: onChangeDropdownTests,
-              ),
-            ),
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(

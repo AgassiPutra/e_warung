@@ -32,20 +32,23 @@ class Notifikasi extends StatelessWidget {
         return Container(
             height: 100,
             child: Card(
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(10.0),
-              ),
-              child: FlatButton(
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => Respon()),
-                  );
-                },
-                child: Text(
-                    'Warung x meminta tambahan stok pada produk ${entries[index]}'),
-              ),
-            ));
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: FlatButton(
+                  onPressed: () async {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Respon()),
+                    );
+                  },
+                  child: ListTile(
+                      contentPadding: EdgeInsets.all(8),
+                      leading: Icon(Icons.message),
+                      title: Text(
+                          'Warung ${entries[index]} ingin menambah stok produk'),
+                      subtitle: const Text('2020-01-12')),
+                )));
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
