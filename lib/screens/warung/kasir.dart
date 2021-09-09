@@ -22,7 +22,7 @@ class _KasirState extends State<Kasir>{
         appBar:AppBar(
           title: Container(
             padding:const EdgeInsets.all(10),
-            height:65,
+            height:60,
             child:Row(
               children: [
                 Expanded(
@@ -33,7 +33,8 @@ class _KasirState extends State<Kasir>{
                       hintText: "Cari Produk",
                       suffixIcon: Icon(Icons.search),
                       isDense: true,
-                      contentPadding: EdgeInsets.all(15)
+                      contentPadding: EdgeInsets.all(10),
+                      border: OutlineInputBorder()
                     )
                   ),
                 ),
@@ -44,7 +45,7 @@ class _KasirState extends State<Kasir>{
         body: Stack(
           children: [
             SlidingUpPanel(
-              maxHeight: screenSize.height,
+              maxHeight: screenSize.height-120,
               minHeight: 120,
               borderRadius: BorderRadius.only(topLeft: Radius.circular(15),topRight: Radius.circular(15)),
               panel: Container(
@@ -54,8 +55,10 @@ class _KasirState extends State<Kasir>{
                     Icon(Icons.drag_handle,size: 24,color: Colors.grey,),
                     Row(mainAxisAlignment:MainAxisAlignment.start,children:[Text("3 Barang",style:TextStyle(fontSize: 18))]),
                     SizedBox(height:20),
-                    Expanded(child:listRequestProduct()),
-                    // Row(mainAxisAlignment: MainAxisAlignment.spaceAround,children: [Text("Total"), Text("$stateTotal")])
+                    Flexible(child:listRequestProduct()),
+                    Container(padding:EdgeInsets.fromLTRB(8, 0, 8, 0),child: Divider(height: 10,thickness: 1)),
+                    SizedBox(height:10),
+                    Container(padding:EdgeInsets.fromLTRB(8,0,8,0),child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,children: [Text("Total"), Text("Rp.200000")]))
                   ]
                 ),
               ),
@@ -76,6 +79,8 @@ class _KasirState extends State<Kasir>{
                       });
                     },
                     decoration: InputDecoration(
+                      isDense:true,
+                      contentPadding: EdgeInsets.fromLTRB(8, 12, 12, 8),
                       border:OutlineInputBorder(),
                     ),
                     items: <String>['Semua', 'Daging', 'Sayur', 'Buah'].map<DropdownMenuItem<String>>((String value) {
@@ -85,7 +90,7 @@ class _KasirState extends State<Kasir>{
                       );
                     }).toList(),
                   ),
-                  Expanded(child:listViewProduct())
+                  Flexible(child:listViewProduct())
                 ],
               )
               ),
@@ -111,39 +116,39 @@ class _KasirState extends State<Kasir>{
   }
   Widget listRequestProduct(){
     final List<Map> myProducts =
-      List.generate(3, (index) => {"id": index, "name": "Product $index","harga": 3000,"jumlah":index})
+      List.generate(3, (index) => {"id": index, "name": "Product $index","harga": 3000,"jumlah":index+1})
           .toList();
     
     return ListView.separated(
+      shrinkWrap:true,
       padding: const EdgeInsets.all(8),
       itemCount: myProducts.length,
       itemBuilder: (BuildContext context, int index) {
         int subtotal = myProducts[index]['harga'] * myProducts[index]['jumlah'];
         // double total = 0;
-        // total += (myProducts[index]['harga'] * myProducts[index]['jumlah']);
+        // total = total + subtotal;
         // setState((){
         //   stateTotal = total;
         //   }
         // );
-        return Container(
-          padding: const EdgeInsets.all(10),
-          child: Row(
+        return Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children:[
-              Text(myProducts[index]["name"]),
+              Text(myProducts[index]["name"],style:TextStyle(fontWeight: FontWeight.bold)),
+              SizedBox(height:10),
               Text("Rp.${myProducts[index]['harga']} x ${myProducts[index]['jumlah']}")
             ]),
             Column(
               children:[
-              Icon(Icons.edit,size: 18,),
-              Text("$subtotal")
+              Icon(Icons.edit,size: 18),
+              SizedBox(height:10),
+              Text("Rp.$subtotal")
             ]),
-          ],)
-        );
+          ]);
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
