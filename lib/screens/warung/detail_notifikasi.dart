@@ -1,14 +1,7 @@
 import 'package:flutter/material.dart';
 import 'dart:math';
-class DetailNotifikasi extends StatefulWidget{
-  const DetailNotifikasi({Key? key}) : super(key: key);
 
-  @override
-  _DetailNotifikasiState createState() => _DetailNotifikasiState();
-}
-class _DetailNotifikasiState extends State<DetailNotifikasi>{
-  
-  
+class DetailNotifikasi extends StatelessWidget{  
   @override
   Widget build(BuildContext context){
     return Scaffold(
