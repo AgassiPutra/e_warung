@@ -10,7 +10,7 @@ class Respon extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(' RESPON NOTIFIKASI'),
+          title: const Text(' DETAIL NOTIFIKASI'),
           backgroundColor: Colors.blue,
         ),
         body: SingleChildScrollView(

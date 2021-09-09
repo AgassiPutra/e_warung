@@ -61,7 +61,9 @@ class ListWarung extends StatelessWidget {
               ),
             ));
       },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      separatorBuilder: (BuildContext context, int index) => const Divider(
+        height: 10,
+      ),
     );
   }
 }

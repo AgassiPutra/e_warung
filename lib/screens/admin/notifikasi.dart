@@ -50,7 +50,9 @@ class Notifikasi extends StatelessWidget {
                       subtitle: const Text('2020-01-12')),
                 )));
       },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      separatorBuilder: (BuildContext context, int index) => const Divider(
+        height: 10,
+      ),
     );
   }
 }
