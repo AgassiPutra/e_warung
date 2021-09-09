@@ -4,6 +4,7 @@ import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class Respon extends StatelessWidget {
   final myProducts = List<String>.generate(20, (i) => 'Nama Produk $i');
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -64,7 +65,32 @@ class Respon extends StatelessWidget {
                                   mainAxisSize: MainAxisSize.min,
                                   children: [
                                     IconButton(
-                                      onPressed: () => {},
+                                      onPressed: () => {
+                                        showDialog<String>(
+                                          context: context,
+                                          builder: (BuildContext context) =>
+                                              AlertDialog(
+                                            title: const Text('Alasan'),
+                                            content: const TextField(
+                                              decoration: InputDecoration(
+                                                  border: OutlineInputBorder(),
+                                                  hintText: 'Tulis alasan'),
+                                            ),
+                                            actions: <Widget>[
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'Batal'),
+                                                child: const Text('Batal'),
+                                              ),
+                                              TextButton(
+                                                onPressed: () => Navigator.pop(
+                                                    context, 'OK'),
+                                                child: const Text('OK'),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      },
                                       icon: const Icon(Icons.cancel),
                                       iconSize: 30,
                                       color: Colors.red,
