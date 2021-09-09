@@ -92,24 +92,32 @@ class _HomeState extends State<Home> {
         return Container(
             height: 100,
             child: Card(
-              child: FlatButton(
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const UpdateProduk()),
-                  );
-                },
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    ListTile(
-                      leading: Icon(Icons.production_quantity_limits),
-                      title: Text('Produk ${entries[index]}'),
-                      subtitle: Text('Harga '),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(Icons.production_quantity_limits),
+                    title: Text('Produk ${entries[index]}'),
+                    subtitle: Text('Harga '),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          onPressed: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UpdateProduk()),
+                            ),
+                          },
+                          icon: const Icon(Icons.edit),
+                          iconSize: 30,
+                          color: Colors.blue,
+                        ),
+                      ],
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ));
       },
@@ -140,7 +148,7 @@ class _HomeState extends State<Home> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
                       ListTile(
-                        leading: Icon(Icons.menu),
+                        leading: const Icon(Icons.menu),
                         title: Text('Kategori ${entries[index]}'),
                       ),
                     ],
