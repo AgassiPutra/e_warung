@@ -1,10 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
+import 'dart:math';
 
 class Respon extends StatelessWidget {
   final myProducts = List<String>.generate(20, (i) => 'Nama Produk $i');
   final _formKey = GlobalKey<FormState>();
+  Random random = new Random();
 
   @override
   Widget build(BuildContext context) {
@@ -57,7 +59,7 @@ class Respon extends StatelessWidget {
                                     color: Colors.blue, size: 50),
                                 title: Text('${myProducts[index]}'),
                                 subtitle: Text(
-                                  'Stok yang diminta : x',
+                                  'Stok yang diminta : ${random.nextInt(100)}',
                                   style: TextStyle(
                                       color: Colors.black.withOpacity(0.6)),
                                 ),
