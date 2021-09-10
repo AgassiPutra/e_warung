@@ -104,6 +104,18 @@ class _HomeState extends State<Home> {
                       children: [
                         IconButton(
                           onPressed: () => {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => const UpdateProduk()),
+                            // ),
+                          },
+                          icon: const Icon(Icons.delete),
+                          iconSize: 30,
+                          color: Colors.red,
+                        ),
+                        IconButton(
+                          onPressed: () => {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
@@ -133,29 +145,50 @@ class _HomeState extends State<Home> {
       itemCount: entries.length,
       itemBuilder: (BuildContext context, int index) {
         return Container(
-            height: 100,
-            child: Card(
-              child: FlatButton(
-                onPressed: () async {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const UpdateKategori()),
-                  );
-                },
-                child: Container(
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      ListTile(
-                        leading: const Icon(Icons.menu),
-                        title: Text('Kategori ${entries[index]}'),
-                      ),
-                    ],
+          height: 100,
+          child: Card(
+            child: Container(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  ListTile(
+                    leading: const Icon(Icons.menu),
+                    title: Text('Kategori ${entries[index]}'),
+                    trailing: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          onPressed: () => {
+                            // Navigator.push(
+                            //   context,
+                            //   MaterialPageRoute(
+                            //       builder: (context) => const UpdateProduk()),
+                            // ),
+                          },
+                          icon: const Icon(Icons.delete),
+                          iconSize: 30,
+                          color: Colors.red,
+                        ),
+                        IconButton(
+                          onPressed: () => {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const UpdateKategori()),
+                            ),
+                          },
+                          icon: const Icon(Icons.edit),
+                          iconSize: 30,
+                          color: Colors.blue,
+                        ),
+                      ],
+                    ),
                   ),
-                ),
+                ],
               ),
-            ));
+            ),
+          ),
+        );
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
