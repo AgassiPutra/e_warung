@@ -94,10 +94,12 @@ class _HomeState extends State<Home> {
             height: 100,
             child: Card(
               child: Column(
-                mainAxisSize: MainAxisSize.min,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   ListTile(
-                    leading: Icon(Icons.production_quantity_limits),
+                    leading: Container(
+                        height: double.infinity,
+                        child: Icon(Icons.production_quantity_limits)),
                     title: Text('Produk ${entries[index]}',
                         style: TextStyle(fontFamily: 'Poppins-Bold')),
                     subtitle:

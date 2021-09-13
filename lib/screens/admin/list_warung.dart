@@ -49,7 +49,8 @@ class ListWarung extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ListTile(
-                        leading: Icon(Icons.store),
+                        leading: Container(
+                            height: double.infinity, child: Icon(Icons.store)),
                         title: Text('Warung ${entries[index]}',
                             style: TextStyle(
                                 fontFamily: 'Poppins',
