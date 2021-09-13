@@ -25,7 +25,9 @@ class MapScreenState extends State<TambahKategori> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('Tambah Kategori'),
+          title: const Text('Tambah Kategori',
+              style: TextStyle(
+                  fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
           backgroundColor: Colors.blue,
         ),
         body: Container(
@@ -75,12 +77,13 @@ class MapScreenState extends State<TambahKategori> {
               Container(
                 padding: EdgeInsets.all(10),
                 child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Kategori',
-                  ),
-                ),
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Kategori',
+                    ),
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
               ),
               Container(
                   height: 50,
@@ -88,7 +91,10 @@ class MapScreenState extends State<TambahKategori> {
                   child: RaisedButton(
                     textColor: Colors.white,
                     color: Colors.blue,
-                    child: Text('Simpan'),
+                    child: Text('Simpan',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700)),
                     onPressed: () {
                       // print(nameController.text);
                       // print(passwordController.text);

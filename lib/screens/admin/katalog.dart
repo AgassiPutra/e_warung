@@ -6,6 +6,7 @@ import 'package:e_warung/screens/admin/updateproduk.dart';
 import 'package:e_warung/screens/admin/warungproduk.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class Home extends StatefulWidget {
@@ -28,10 +29,10 @@ class _HomeState extends State<Home> {
             title: TextFormField(
               cursorColor: Colors.white,
               textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 20,
-              ),
+              style: TextStyle(
+                  fontFamily: 'Poppins',
+                  fontWeight: FontWeight.w600,
+                  fontSize: 20),
               decoration: const InputDecoration(
                 hintText: 'Cari',
               ),
@@ -97,8 +98,10 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   ListTile(
                     leading: Icon(Icons.production_quantity_limits),
-                    title: Text('Produk ${entries[index]}'),
-                    subtitle: Text('Harga '),
+                    title: Text('Produk ${entries[index]}',
+                        style: TextStyle(fontFamily: 'Poppins-Bold')),
+                    subtitle:
+                        Text('Harga ', style: TextStyle(fontFamily: 'Poppins')),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [
@@ -153,7 +156,10 @@ class _HomeState extends State<Home> {
                 children: <Widget>[
                   ListTile(
                     leading: const Icon(Icons.menu),
-                    title: Text('Kategori ${entries[index]}'),
+                    title: Text('Kategori ${entries[index]}',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w500)),
                     trailing: Row(
                       mainAxisSize: MainAxisSize.min,
                       children: [

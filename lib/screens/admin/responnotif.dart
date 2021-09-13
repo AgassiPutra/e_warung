@@ -13,7 +13,9 @@ class Respon extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(' DETAIL NOTIFIKASI'),
+          title: const Text(' DETAIL NOTIFIKASI',
+              style: TextStyle(
+                  fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
           backgroundColor: Colors.blue,
         ),
         body: SingleChildScrollView(
@@ -31,10 +33,15 @@ class Respon extends StatelessWidget {
                       title: Text(
                         'Nama Warung',
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 30),
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700,
+                            fontSize: 30),
                       ),
                       subtitle: Text(
-                          'Warung x meminta penambahan stok pada produk y'),
+                          'Warung x meminta penambahan stok pada produk y',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w300)),
                     ),
                   ],
                 ),
@@ -57,11 +64,15 @@ class Respon extends StatelessWidget {
                               ListTile(
                                 leading: Icon(Icons.store,
                                     color: Colors.blue, size: 50),
-                                title: Text('${myProducts[index]}'),
+                                title: Text('${myProducts[index]}',
+                                    style: TextStyle(
+                                        fontFamily: 'Poppins',
+                                        fontWeight: FontWeight.w400)),
                                 subtitle: Text(
                                   'Stok yang diminta : ${random.nextInt(100)}',
                                   style: TextStyle(
-                                      color: Colors.black.withOpacity(0.6)),
+                                      fontFamily: 'Poppins',
+                                      fontWeight: FontWeight.w400),
                                 ),
                                 trailing: Row(
                                   mainAxisSize: MainAxisSize.min,
@@ -72,12 +83,20 @@ class Respon extends StatelessWidget {
                                           context: context,
                                           builder: (BuildContext context) =>
                                               AlertDialog(
-                                            title: const Text('Alasan'),
+                                            title: const Text('Alasan',
+                                                style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight:
+                                                        FontWeight.w400)),
                                             content: const TextField(
-                                              decoration: InputDecoration(
-                                                  border: OutlineInputBorder(),
-                                                  hintText: 'Tulis alasan'),
-                                            ),
+                                                decoration: InputDecoration(
+                                                    border:
+                                                        OutlineInputBorder(),
+                                                    hintText: 'Tulis alasan'),
+                                                style: TextStyle(
+                                                    fontFamily: 'Poppins',
+                                                    fontWeight:
+                                                        FontWeight.w400)),
                                             actions: <Widget>[
                                               TextButton(
                                                 onPressed: () => Navigator.pop(

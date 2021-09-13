@@ -10,7 +10,9 @@ class WarungProduk extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text(' List Produk'),
+        title: const Text(' LIST PRODUK',
+            style:
+                TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
         backgroundColor: Colors.blue,
       ),
       body: SingleChildScrollView(
@@ -24,13 +26,17 @@ class WarungProduk extends StatelessWidget {
                     leading: Icon(Icons.store, size: 50),
                     title: Text(
                       'Nama Warung',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 40),
+                      style: TextStyle(
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w700,
+                          fontSize: 40),
                     ),
                     subtitle: Text(
                       'Nama Pemilik',
                       style: TextStyle(
-                          fontWeight: FontWeight.normal, fontSize: 25),
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w300,
+                          fontSize: 25),
                     ),
                   ),
                 ],
@@ -46,7 +52,10 @@ class WarungProduk extends StatelessWidget {
                     key: UniqueKey(),
                     child: Padding(
                         padding: EdgeInsets.all(10),
-                        child: Text(myProducts[index])),
+                        child: Text(myProducts[index],
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w400))),
                   );
                 }),
           ],

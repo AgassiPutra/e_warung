@@ -9,7 +9,9 @@ class Notifikasi extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('NOTIFIKASI'),
+          title: const Text('NOTIFIKASI',
+              style: TextStyle(
+                  fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
           backgroundColor: Colors.blue,
         ),
         body: Stack(
@@ -46,8 +48,14 @@ class Notifikasi extends StatelessWidget {
                       contentPadding: EdgeInsets.all(8),
                       leading: Icon(Icons.message),
                       title: Text(
-                          'Warung ${entries[index]} ingin menambah stok produk'),
-                      subtitle: const Text('2020-01-12')),
+                          'Warung ${entries[index]} ingin menambah stok produk',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w400)),
+                      subtitle: const Text('2020-01-12',
+                          style: TextStyle(
+                              fontFamily: 'Poppins',
+                              fontWeight: FontWeight.w400))),
                 )));
       },
       separatorBuilder: (BuildContext context, int index) => const Divider(

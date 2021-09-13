@@ -53,19 +53,27 @@ class _NavBarState extends State<NavBar> {
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.menu_book),
-            title: Text('Katalog'),
+            title: Text('Katalog',
+                style: TextStyle(
+                    fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.assignment),
-            title: Text('List Warung'),
+            title: Text('List Warung',
+                style: TextStyle(
+                    fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            title: Text('Notifikasi'),
+            title: Text('Notifikasi',
+                style: TextStyle(
+                    fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            title: Text('Akun'),
+            title: Text('Akun',
+                style: TextStyle(
+                    fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
           ),
         ],
       ),

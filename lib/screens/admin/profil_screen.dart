@@ -38,7 +38,9 @@ class MapScreenState extends State<ProfileScreen>
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('PROFIL'),
+          title: const Text('PROFIL',
+              style: TextStyle(
+                  fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
           actions: [
@@ -121,8 +123,9 @@ class MapScreenState extends State<ProfileScreen>
                                       Text(
                                         'Informasi Pribadi',
                                         style: TextStyle(
-                                            fontSize: 18.0,
-                                            fontWeight: FontWeight.bold),
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 20),
                                       ),
                                     ],
                                   ),
@@ -141,8 +144,9 @@ class MapScreenState extends State<ProfileScreen>
                                       Text(
                                         'Nama',
                                         style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16),
                                       ),
                                     ],
                                   ),
@@ -157,9 +161,10 @@ class MapScreenState extends State<ProfileScreen>
                                   Flexible(
                                     child: Text(
                                       '${userData}',
-                                      style: const TextStyle(
-                                          fontSize: 16.0,
-                                          fontWeight: FontWeight.normal),
+                                      style: TextStyle(
+                                          fontFamily: 'Poppins',
+                                          fontWeight: FontWeight.w400,
+                                          fontSize: 16),
                                     ),
                                   ),
                                 ],
@@ -176,8 +181,9 @@ class MapScreenState extends State<ProfileScreen>
                                       child: const Text(
                                         'Username',
                                         style: TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.bold),
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w700,
+                                            fontSize: 16),
                                       ),
                                     ),
                                     flex: 2,
@@ -196,9 +202,10 @@ class MapScreenState extends State<ProfileScreen>
                                       padding: EdgeInsets.only(right: 10.0),
                                       child: Text(
                                         '${userJabatan}',
-                                        style: const TextStyle(
-                                            fontSize: 16.0,
-                                            fontWeight: FontWeight.normal),
+                                        style: TextStyle(
+                                            fontFamily: 'Poppins',
+                                            fontWeight: FontWeight.w400,
+                                            fontSize: 16),
                                       ),
                                     ),
                                     flex: 2,

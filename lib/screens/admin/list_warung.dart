@@ -10,7 +10,9 @@ class ListWarung extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('WARUNG'),
+          title: const Text('WARUNG',
+              style: TextStyle(
+                  fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
           backgroundColor: Colors.blue,
         ),
         body: Stack(
@@ -48,7 +50,10 @@ class ListWarung extends StatelessWidget {
                     children: [
                       ListTile(
                         leading: Icon(Icons.store),
-                        title: Text('Warung ${entries[index]}'),
+                        title: Text('Warung ${entries[index]}',
+                            style: TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w400)),
                         subtitle: Text(
                           'Stok : x',
                           style:

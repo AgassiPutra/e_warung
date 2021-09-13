@@ -89,7 +89,9 @@ class MapScreenState extends State<AddProduct> {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('TAMBAH PRODUK'),
+        title: const Text('TAMBAH PRODUK',
+            style:
+                TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
         backgroundColor: Colors.blue,
       ),
       body: Container(
@@ -138,29 +140,33 @@ class MapScreenState extends State<AddProduct> {
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
-                controller: nameController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Nama Produk',
-                ),
-              ),
+                  controller: nameController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Nama Produk',
+                  ),
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
             ),
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
-                controller: hargaController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Harga Jual',
-                ),
-              ),
+                  controller: hargaController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Harga Jual',
+                  ),
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
             ),
             Container(
                 padding: EdgeInsets.all(8),
                 child: Card(
                     child: DropdownButtonFormField(
                   isExpanded: true,
-                  hint: const Text('Pilih Merk'),
+                  hint: const Text('Pilih Merk',
+                      style: TextStyle(
+                          fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
                   value: _selectedTest2,
                   items: _dropdownTestItems2,
                   onChanged: onChangeDropdownTests2,
@@ -170,7 +176,10 @@ class MapScreenState extends State<AddProduct> {
                 child: Card(
                   child: DropdownButtonFormField(
                     isExpanded: true,
-                    hint: const Text('Pilih Kategori'),
+                    hint: const Text('Pilih Kategori',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w400)),
                     value: _selectedTest,
                     items: _dropdownTestItems,
                     onChanged: onChangeDropdownTests,
@@ -179,18 +188,21 @@ class MapScreenState extends State<AddProduct> {
             Container(
               padding: EdgeInsets.all(10),
               child: TextField(
-                controller: stokController,
-                decoration: const InputDecoration(
-                  border: OutlineInputBorder(),
-                  labelText: 'Stok',
-                ),
-              ),
+                  controller: stokController,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Stok',
+                  ),
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
             ),
             Container(
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: TextButton(
-                  child: Text('Tambah'),
+                  child: Text('Tambah',
+                      style: TextStyle(
+                          fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
                   style: TextButton.styleFrom(
                     primary: Colors.white,
                     backgroundColor: Colors.blue,

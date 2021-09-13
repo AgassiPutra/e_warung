@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:e_warung/screens/login.dart';
 import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UpdateProduk extends StatefulWidget {
@@ -25,7 +26,11 @@ class MapScreenState extends State<UpdateProduk> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('UPDATE PRODUK'),
+          title: const Text(
+            'UPDATE PRODUK',
+            style:
+                TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
+          ),
           backgroundColor: Colors.blue,
         ),
         body: Container(
@@ -66,6 +71,7 @@ class MapScreenState extends State<UpdateProduk> {
                                 const Text(
                                   'Nama Produk',
                                   style: TextStyle(
+                                      fontFamily: 'Poppins',
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20),
                                 ),
@@ -86,27 +92,31 @@ class MapScreenState extends State<UpdateProduk> {
                     border: OutlineInputBorder(),
                     labelText: 'Stok Barang',
                   ),
+                  style: TextStyle(
+                      fontFamily: 'Poppins', fontWeight: FontWeight.w400),
                 ),
               ),
               Container(
                 padding: EdgeInsets.all(10),
                 child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Harga Beli',
-                  ),
-                ),
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Harga Beli',
+                    ),
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
               ),
               Container(
                 padding: EdgeInsets.all(10),
                 child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Harga Jual',
-                  ),
-                ),
+                    controller: nameController,
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Harga Jual',
+                    ),
+                    style: TextStyle(
+                        fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
               ),
               Container(
                   height: 50,
@@ -114,7 +124,10 @@ class MapScreenState extends State<UpdateProduk> {
                   child: RaisedButton(
                     textColor: Colors.white,
                     color: Colors.blue,
-                    child: Text('Simpan'),
+                    child: Text('Simpan',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w700)),
                     onPressed: () {
                       // print(nameController.text);
                       // print(passwordController.text);
