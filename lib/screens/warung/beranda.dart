@@ -1,3 +1,6 @@
+import 'package:e_warung/screens/dashboard.dart';
+import 'package:e_warung/screens/warung/katalog.dart';
+import 'package:e_warung/screens/warung/riwayat_transaksi.dart';
 import 'package:flutter/material.dart';
 
 class Home extends StatelessWidget {
@@ -44,7 +47,11 @@ class Home extends StatelessWidget {
                   padding: EdgeInsets.all(10),
                   child:Column(
                     children:[
-                      Row(
+                      GestureDetector(
+                        onTap:(){
+                          
+                        },
+                        child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(Icons.add_shopping_cart),
@@ -62,6 +69,7 @@ class Home extends StatelessWidget {
                           ),   
                           Icon(Icons.arrow_forward_ios),
                         ]
+                      ),
                       ),
                       Divider(
                         height:5,
@@ -90,7 +98,14 @@ class Home extends StatelessWidget {
                         height:5,
                         thickness: 1,
                       ),
-                      Row(
+                      GestureDetector(
+                        onTap: (){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context)=> Transaksi())
+                          );
+                        },
+                        child:Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Icon(Icons.receipt_long),
@@ -107,7 +122,8 @@ class Home extends StatelessWidget {
                             ),
                           ),   
                           Icon(Icons.arrow_forward_ios),
-                      ],)
+                      ])
+                      )
                     ]
                   )
                 )
