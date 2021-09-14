@@ -70,7 +70,7 @@ class _NotifikasiState extends State<Notifikasi>{
             onTap: () async {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context)=> const DetailNotifikasi())
+                MaterialPageRoute(builder: (context)=> DetailNotifikasi())
               );
             },
             leading: Column(
