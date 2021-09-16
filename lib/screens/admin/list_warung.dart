@@ -37,6 +37,9 @@ class ListWarung extends StatelessWidget {
         return Container(
             height: 100,
             child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10.0),
+              ),
               child: FlatButton(
                 onPressed: () async {
                   Navigator.push(

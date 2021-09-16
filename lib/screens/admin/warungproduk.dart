@@ -44,6 +44,7 @@ class WarungProduk extends StatelessWidget {
             ),
             ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
+                padding: EdgeInsets.all(5),
                 scrollDirection: Axis.vertical,
                 shrinkWrap: true,
                 itemCount: myProducts.length,
