@@ -26,7 +26,7 @@ class MapScreenState extends State<ProfileScreen>
   _getUserInfo() async {
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     var json = sharedPreferences.getString('user');
-    var bagian = sharedPreferences.getString('jabatan');
+    var bagian = sharedPreferences.getString('bagian');
     setState(() {
       userData = json;
       userJabatan = bagian;
