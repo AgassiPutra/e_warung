@@ -4,9 +4,10 @@ import 'package:shared_preferences/shared_preferences.dart';
 //import screens
 import 'package:e_warung/screens/warung/profil.dart';
 import 'package:e_warung/screens/warung/beranda.dart';
-import 'package:e_warung/screens/warung/kasir.dart';
+// import 'package:e_warung/screens/warung/kasir.dart';
 import 'package:e_warung/screens/warung/katalog.dart';
 import 'package:e_warung/screens/warung/notifikasi.dart';
+import 'package:e_warung/screens/warung/list_produk_warung.dart';
 
 
 class Dashboard extends StatelessWidget {
@@ -35,7 +36,7 @@ class _NavBarState extends State<NavBar> {
   final List<Widget> _children = [
     Home(),
     Katalog(),
-    Kasir(),
+    ListWarungProduk(),
     Notifikasi(),
     ProfileScreen(),
   ];
@@ -65,7 +66,7 @@ class _NavBarState extends State<NavBar> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.calculate),
-            title: Text('Kasir'),
+            title: Text('Produk'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
