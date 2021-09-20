@@ -1,4 +1,5 @@
 import 'package:e_warung/screens/warung/detail_produk.dart';
+import 'package:e_warung/screens/warung/keranjang.dart';
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -10,7 +11,7 @@ class Katalog extends StatefulWidget{
 }
 class _KatalogState extends State<Katalog>{
   String dropdownValue = 'Semua';
-  
+  int keranjang = 4;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -40,14 +41,30 @@ class _KatalogState extends State<Katalog>{
                 ),
                 Flexible(
                   flex:2,
-                  child: GestureDetector(
-                    onTap:(){},
-                    child: Column(
-                      children:[
-                        Icon(Icons.store),
-                        Text("Warung",softWrap:true,style:TextStyle(fontSize: 10))
-                      ]
-                    )
+                  child: Stack(
+                    children: [
+                      IconButton(
+                        onPressed: (){
+                          Navigator.push(
+                            context, 
+                            MaterialPageRoute(builder: (context)=> Keranjang())
+                          );
+                        },
+                        icon: Icon(Icons.shopping_cart),
+                      ),
+                      if(keranjang != 0)
+                      Positioned(
+                        top:0,
+                        right:0,
+                        width:15,
+                        height:15,
+                        child: Container(
+                          decoration: BoxDecoration(shape:BoxShape.circle,color:Colors.orange.shade300),
+                          alignment: Alignment.center,
+                          child:  Text("$keranjang",style:TextStyle(fontSize: 10))
+                        ),
+                      )
+                    ],
                   )
                 )
               ],
