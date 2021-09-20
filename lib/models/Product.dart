@@ -1,24 +1,20 @@
-// class Product{
-//   int id;
-//   String productName;
-//   int sellPrice;
-//   int buyPrice;
-//   String stock;
-//   int status;
-//   String imageUrl
+class Produk {
+  final int id;
+  final String nama;
+  final String harga;
 
-//   Product({this.id,this.productName,this.sellPrice,this.buyPrice,this.stock,this.status,this.imageUrl});
+  Produk({required this.id, required this.nama, required this.harga});
 
-//   Product.fromJson(Map <String, Dynamic> json):
-//     id = json['id'],
-//     productName = json['product_name'],
-//     sellPrice = json['selling_price'],
-//     buyPrice = json['purchase_price'],
-//     stock = json['stock'],
-//     status = json['is_ready'],
-//     imageUrl = json['photo']
-//   ;
+  factory Produk.fromJson(Map<String, dynamic> json) {
+    return Produk(
+      id: json['id'],
+      nama: json['nama'],
+      harga: json['harga'],
+    );
+  }
 
-
-
-// }
+  Map<String, dynamic> toJson() => {
+        'nama': nama,
+        'harga': harga,
+      };
+}
