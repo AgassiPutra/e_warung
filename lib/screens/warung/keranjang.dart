@@ -6,6 +6,18 @@ class Keranjang extends StatefulWidget {
 }
 
 class _KeranjangState extends State<Keranjang> {
+  bool isWeekend = true;
+  List<Map> keranjangku = List.generate(
+        4,
+        (index) => {
+              "id": index,
+              "product_name": "Product $index",
+              "harga": "${index + 1}.000",
+              "stok": 5,
+              "max_stok":10
+            });
+  final _textController = TextEditingController();
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -19,7 +31,65 @@ class _KeranjangState extends State<Keranjang> {
               Row(children: [
                 Expanded(
                     child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          if (isWeekend){
+                            showDialog(
+                            context: context, 
+                            builder: (BuildContext context){
+                              return AlertDialog(
+                                title:Text("Apakah anda ingin melanjutkan pemesanan?"),
+                                content: Text("Pesanan tetap terkirim namun respon admin mungkin sedikit lambat"),
+                                actions: [
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                    }, 
+                                    child: Text("Batal")
+                                  ),
+                                  TextButton(
+                                    onPressed: (){
+                                      Navigator.pop(context);
+                                      showDialog(
+                                        context: context, 
+                                        builder: (BuildContext context){
+                                          return AlertDialog(
+                                            title:Text("Pesanan Sedang Diproses"),
+                                            content: Text("Silahkan tunggu hingga admin menyetujui"),
+                                            actions: [
+                                              TextButton(
+                                                onPressed: (){
+                                                  Navigator.pop(context);
+                                                }, 
+                                                child: Text("OK")
+                                              ),
+                                            ]
+                                          );
+                                        });
+                                    }, 
+                                    child: Text("Lanjutkan")
+                                  ),
+                                ]
+                              );
+                            });
+                          }else{
+                            showDialog(
+                              context: context, 
+                              builder: (BuildContext context){
+                                return AlertDialog(
+                                  title:Text("Pesanan Sedang Diproses"),
+                                  content: Text("Silahkan tunggu hingga admin menyetujui"),
+                                  actions: [
+                                    TextButton(
+                                      onPressed: (){
+                                        Navigator.pop(context);
+                                      }, 
+                                      child: Text("OK")
+                                    ),
+                                  ]
+                                );
+                              });
+                          }
+                        },
                         style: ButtonStyle(
                             backgroundColor:
                                 MaterialStateProperty.all(Colors.green)),
@@ -31,15 +101,6 @@ class _KeranjangState extends State<Keranjang> {
   }
 
   Widget listKeranjang() {
-    List<Map> keranjangku = List.generate(
-        4,
-        (index) => {
-              "id": index,
-              "product_name": "Product $index",
-              "harga": "${index + 1}.000",
-              "stok": 5
-            });
-
     return ListView.separated(
       itemCount: keranjangku.length,
       itemBuilder: (BuildContext context, int index) {
@@ -59,7 +120,18 @@ class _KeranjangState extends State<Keranjang> {
                                 onPressed: () {},
                                 icon: Icon(Icons.delete, color: Colors.red)),
                             buttonAddMinus(
-                                counter: keranjangku[index]['stok'], max: 10)
+                              counter: keranjangku[index]['stok'],
+                              onAdd: (){
+                                setState((){
+                                  ++keranjangku[index]['stok'];
+                                });
+                              },
+                              onMinus: (){
+                                setState((){
+                                  --keranjangku[index]['stok'];
+                                });
+                              },
+                            )
                           ])
                         ]))));
       },
@@ -67,20 +139,13 @@ class _KeranjangState extends State<Keranjang> {
     );
   }
 
-  Widget buttonAddMinus({required int counter, int? max}) {
-    int _counter = 0;
+  Widget buttonAddMinus({Function? onAdd, Function? onMinus, required int counter}) {
     return Container(
         width: 130,
         height: 60,
         child: Row(children: [
           IconButton(
-              onPressed: () {
-                setState(() {
-                  if (counter != 0) {
-                    _counter = counter - 1;
-                  }
-                });
-              },
+              onPressed: () => onMinus!(),
               icon: Icon(Icons.remove,
                   color: (() {
                     if (counter == 0) {
@@ -93,31 +158,19 @@ class _KeranjangState extends State<Keranjang> {
               child: TextField(
             // expands:true,
             textAlign: TextAlign.center,
-            controller: TextEditingController()..text = '$counter',
+            controller: TextEditingController()..text = counter.toString(),
             onChanged: (text) {
               counter = int.parse(text);
-              text = "$   counter";
+              text = counter.toString();
             },
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(border: InputBorder.none),
             keyboardType: TextInputType.number,
           )),
           IconButton(
-              onPressed: () {
-                setState(() {
-                  if (counter != max) {
-                    counter++;
-                  }
-                });
-              },
-              icon: Icon(Icons.add,
-                  color: (() {
-                    if (counter == max) {
-                      return Colors.grey;
-                    } else {
-                      return Colors.blue;
-                    }
-                  }()))),
+              onPressed: ()=> onAdd!(),
+              icon: Icon(Icons.add)
+          ),
         ]));
   }
 }
