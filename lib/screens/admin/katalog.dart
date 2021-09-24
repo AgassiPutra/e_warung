@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:e_warung/models/kategori.dart';
 import 'package:e_warung/screens/admin/tambahkategori.dart';
 import 'package:e_warung/screens/admin/tambahproduk.dart';
 import 'package:e_warung/screens/admin/updatekategori.dart';
@@ -11,6 +12,7 @@ import 'package:http/http.dart' as http;
 
 import 'package:e_warung/env.dart';
 import 'package:e_warung/models/product.dart';
+import 'package:e_warung/models/kategori.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -21,12 +23,14 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   late Future<List<Produk>> produk;
+  late Future<List<Kategori>> kategori;
   final produkListKey = GlobalKey<_HomeState>();
   int indexTab = 0;
   @override
   void initState() {
     super.initState();
     produk = getProdukList();
+    kategori = getKategoriList();
   }
 
   Future<List<Produk>> getProdukList() async {
@@ -37,6 +41,17 @@ class _HomeState extends State<Home> {
     }).toList();
 
     return produk;
+  }
+
+  Future<List<Kategori>> getKategoriList() async {
+    final response =
+        await http.get(Uri.parse("${Env.URL_PREFIX}/list_kategori.php"));
+    final items = json.decode(response.body).cast<Map<String, dynamic>>();
+    List<Kategori> kategori = items.map<Kategori>((json) {
+      return Kategori.fromJson(json);
+    }).toList();
+
+    return kategori;
   }
 
   @override
@@ -174,66 +189,131 @@ class _HomeState extends State<Home> {
   }
 
   Widget buildListViewbyIndexKategori() {
-    final List<String> entries = <String>['A', 'B', 'C'];
-
-    return ListView.separated(
-      padding: const EdgeInsets.all(8),
-      itemCount: entries.length,
-      itemBuilder: (BuildContext context, int index) {
-        return Container(
-          height: 100,
-          child: Card(
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  ListTile(
-                    leading: const Icon(Icons.menu),
-                    title: Text('Kategori ${entries[index]}',
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w500)),
-                    trailing: Row(
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        IconButton(
-                          onPressed: () => {
-                            // Navigator.push(
-                            //   context,
-                            //   MaterialPageRoute(
-                            //       builder: (context) => const UpdateProduk()),
-                            // ),
-                          },
-                          icon: const Icon(Icons.delete),
-                          iconSize: 30,
-                          color: Colors.red,
-                        ),
-                        IconButton(
-                          onPressed: () => {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const UpdateKategori()),
+    return FutureBuilder<List<Kategori>>(
+      future: kategori,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        // By default, show a loading spinner.
+        if (!snapshot.hasData) return const CircularProgressIndicator();
+        // Render student lists
+        return ListView.builder(
+          padding: const EdgeInsets.all(8),
+          itemCount: snapshot.data.length,
+          itemBuilder: (BuildContext context, int index) {
+            var data = snapshot.data[index];
+            return Container(
+                height: 100,
+                child: Card(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      ListTile(
+                        leading: Container(
+                            height: double.infinity,
+                            child: const Icon(Icons.shop_2_rounded)),
+                        title: Text(data.nama,
+                            style: const TextStyle(fontFamily: 'Poppins-Bold')),
+                        trailing: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            IconButton(
+                              onPressed: () => {
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //       builder: (context) => const UpdateProduk()),
+                                // ),
+                              },
+                              icon: const Icon(Icons.delete),
+                              iconSize: 30,
+                              color: Colors.red,
                             ),
-                          },
-                          icon: const Icon(Icons.edit),
-                          iconSize: 30,
-                          color: Colors.blue,
+                            IconButton(
+                              onPressed: () => {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          const UpdateKategori()),
+                                ),
+                              },
+                              icon: const Icon(Icons.edit),
+                              iconSize: 30,
+                              color: Colors.blue,
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
-                ],
-              ),
-            ),
-          ),
+                ));
+          },
         );
       },
-      separatorBuilder: (BuildContext context, int index) => const Divider(),
     );
   }
-  // child: Text('Kategori ${entries[index]}'),
-}
+
+//dummy
+//   Widget buildListViewbyIndexKategori() {
+//     final List<String> entries = <String>['A', 'B', 'C'];
+
+//     return ListView.separated(
+//       padding: const EdgeInsets.all(8),
+//       itemCount: entries.length,
+//       itemBuilder: (BuildContext context, int index) {
+//         return Container(
+//           height: 100,
+//           child: Card(
+//             child: Container(
+//               child: Column(
+//                 mainAxisAlignment: MainAxisAlignment.center,
+//                 children: <Widget>[
+//                   ListTile(
+//                     leading: const Icon(Icons.menu),
+//                     title: Text('Kategori ${entries[index]}',
+//                         style: TextStyle(
+//                             fontFamily: 'Poppins',
+//                             fontWeight: FontWeight.w500)),
+//                     trailing: Row(
+//                       mainAxisSize: MainAxisSize.min,
+//                       children: [
+//                         IconButton(
+//                           onPressed: () => {
+//                             // Navigator.push(
+//                             //   context,
+//                             //   MaterialPageRoute(
+//                             //       builder: (context) => const UpdateProduk()),
+//                             // ),
+//                           },
+//                           icon: const Icon(Icons.delete),
+//                           iconSize: 30,
+//                           color: Colors.red,
+//                         ),
+//                         IconButton(
+//                           onPressed: () => {
+//                             Navigator.push(
+//                               context,
+//                               MaterialPageRoute(
+//                                   builder: (context) => const UpdateKategori()),
+//                             ),
+//                           },
+//                           icon: const Icon(Icons.edit),
+//                           iconSize: 30,
+//                           color: Colors.blue,
+//                         ),
+//                       ],
+//                     ),
+//                   ),
+//                 ],
+//               ),
+//             ),
+//           ),
+//         );
+//       },
+//       separatorBuilder: (BuildContext context, int index) => const Divider(),
+//     );
+//   }
+//   // child: Text('Kategori ${entries[index]}'),
+// }
 
 //tampil data dummy
 // Widget buildListViewbyIndex() {
@@ -295,3 +375,4 @@ class _HomeState extends State<Home> {
 //       separatorBuilder: (BuildContext context, int index) => const Divider(),
 //     );
 //   }
+}

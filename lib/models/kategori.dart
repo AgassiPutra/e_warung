@@ -1,17 +1,17 @@
 class Kategori {
   final int id;
-  final String kategori;
+  final String nama;
 
-  Kategori({required this.id, required this.kategori});
+  Kategori({required this.id, required this.nama});
 
   factory Kategori.fromJson(Map<String, dynamic> json) {
     return Kategori(
       id: json['id'],
-      kategori: json['kategori'],
+      nama: json['nama'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'kategori': kategori,
+        'nama': nama,
       };
 }
