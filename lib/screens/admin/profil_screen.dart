@@ -169,49 +169,6 @@ class MapScreenState extends State<ProfileScreen>
                                   ),
                                 ],
                               )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 25.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Expanded(
-                                    child: Container(
-                                      child: const Text(
-                                        'Username',
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.w700,
-                                            fontSize: 16),
-                                      ),
-                                    ),
-                                    flex: 2,
-                                  ),
-                                ],
-                              )),
-                          Padding(
-                              padding: const EdgeInsets.only(
-                                  left: 25.0, right: 25.0, top: 2.0),
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: <Widget>[
-                                  Flexible(
-                                    child: Padding(
-                                      padding: EdgeInsets.only(right: 10.0),
-                                      child: Text(
-                                        '${userJabatan}',
-                                        style: TextStyle(
-                                            fontFamily: 'Poppins',
-                                            fontWeight: FontWeight.w400,
-                                            fontSize: 16),
-                                      ),
-                                    ),
-                                    flex: 2,
-                                  ),
-                                ],
-                              )),
                         ],
                       ),
                     ),

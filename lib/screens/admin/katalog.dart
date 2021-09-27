@@ -145,7 +145,9 @@ class _HomeState extends State<Home> {
                             height: double.infinity,
                             child: const Icon(Icons.shop_2_rounded)),
                         title: Text(data.nama,
-                            style: const TextStyle(fontFamily: 'Poppins-Bold')),
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w400)),
                         subtitle: Text(data.harga,
                             style: const TextStyle(fontFamily: 'Poppins')),
                         trailing: Row(
@@ -211,7 +213,9 @@ class _HomeState extends State<Home> {
                             height: double.infinity,
                             child: const Icon(Icons.shop_2_rounded)),
                         title: Text(data.nama,
-                            style: const TextStyle(fontFamily: 'Poppins-Bold')),
+                            style: const TextStyle(
+                                fontFamily: 'Poppins',
+                                fontWeight: FontWeight.w400)),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
