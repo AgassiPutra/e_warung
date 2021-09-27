@@ -16,7 +16,6 @@ class _KeranjangState extends State<Keranjang> {
               "stok": 5,
               "max_stok":10
             });
-  final _textController = TextEditingController();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,10 +126,17 @@ class _KeranjangState extends State<Keranjang> {
                                 });
                               },
                               onMinus: (){
-                                setState((){
+                                if(keranjangku[index]['stok'] != 0){
+                                  setState((){
                                   --keranjangku[index]['stok'];
-                                });
+                                  });
+                                }
                               },
+                              onChanged: (text){
+                                setState((){
+                                  keranjangku[index]['stok'] = int.parse(text);
+                                });
+                              }
                             )
                           ])
                         ]))));
@@ -139,7 +145,9 @@ class _KeranjangState extends State<Keranjang> {
     );
   }
 
-  Widget buttonAddMinus({Function? onAdd, Function? onMinus, required int counter}) {
+  Widget buttonAddMinus({Function? onAdd, Function? onMinus,Function(String)? onChanged,required int counter}) {
+    final _textController = TextEditingController();
+    
     return Container(
         width: 130,
         height: 60,
@@ -158,18 +166,22 @@ class _KeranjangState extends State<Keranjang> {
               child: TextField(
             // expands:true,
             textAlign: TextAlign.center,
-            controller: TextEditingController()..text = counter.toString(),
-            onChanged: (text) {
-              counter = int.parse(text);
-              text = counter.toString();
-            },
+            controller: _textController..text = counter.toString(),
+            onChanged: onChanged,
             textAlignVertical: TextAlignVertical.center,
             decoration: InputDecoration(border: InputBorder.none),
             keyboardType: TextInputType.number,
           )),
           IconButton(
               onPressed: ()=> onAdd!(),
-              icon: Icon(Icons.add)
+              icon: Icon(Icons.add,
+                color: (() {
+                    if (counter == 0) {
+                      return Colors.grey;
+                    } else {
+                      return Colors.blue;
+                    }
+                  }()))
           ),
         ]));
   }
