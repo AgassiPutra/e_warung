@@ -98,50 +98,6 @@ class _DetailProdukState extends State<DetailProduk> {
               ])
             ]),
           ),
-          Divider(thickness: 4),
-          Container(
-              padding: EdgeInsets.all(15),
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text("Pilih Satuan:"),
-                    Row(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: _radioFill,
-                                    border: Border.all(color: _radioBorder)),
-                                child: Text("Pcs",
-                                    style: TextStyle(color: _radioText))),
-                          ),
-                          SizedBox(width: 15),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: _radioFill,
-                                    border: Border.all(color: _radioBorder)),
-                                child: Text("Paket",
-                                    style: TextStyle(color: _radioText))),
-                          ),
-                          SizedBox(width: 15),
-                          GestureDetector(
-                            onTap: () {},
-                            child: Container(
-                                padding: EdgeInsets.all(10),
-                                decoration: BoxDecoration(
-                                    color: _radioFill,
-                                    border: Border.all(color: _radioBorder)),
-                                child: Text("Kg",
-                                    style: TextStyle(color: _radioText))),
-                          ),
-                        ])
-                  ])),
 
           // // Deskripsi Produk
           // Text("Deskripsi Produk",style:TextStyle(fontWeight: FontWeight.bold,fontSize: 18)),

@@ -3,8 +3,6 @@ import 'package:e_warung/util/const.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 //import screens
 import 'package:e_warung/screens/warung/profil.dart';
-import 'package:e_warung/screens/warung/beranda.dart';
-// import 'package:e_warung/screens/warung/kasir.dart';
 import 'package:e_warung/screens/warung/katalog.dart';
 import 'package:e_warung/screens/warung/notifikasi.dart';
 import 'package:e_warung/screens/warung/list_produk_warung.dart';
@@ -34,9 +32,8 @@ class _NavBarState extends State<NavBar> {
   late SharedPreferences sharedPreferences;
   int _selectedNavbar = 0;
   final List<Widget> _children = [
-    Home(),
-    Katalog(),
     ListWarungProduk(),
+    Katalog(),
     Notifikasi(),
     ProfileScreen(),
   ];
@@ -57,16 +54,12 @@ class _NavBarState extends State<NavBar> {
         currentIndex: _selectedNavbar,
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            title: Text('Beranda'),
+            icon: Icon(Icons.calculate),
+            title: Text('Produk'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list),
             title: Text('Katalog'),
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.calculate),
-            title: Text('Produk'),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
