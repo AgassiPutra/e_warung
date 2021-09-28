@@ -1,6 +1,5 @@
 import 'package:e_warung/screens/warung/dashboard.dart';
 import 'package:e_warung/screens/register.dart';
-import 'package:e_warung/screens/warung/beranda.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatefulWidget {
