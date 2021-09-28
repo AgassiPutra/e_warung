@@ -3,7 +3,6 @@ import 'package:dropdown_below/dropdown_below.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
@@ -37,10 +36,20 @@ class MapScreenState extends State<AddProduct> {
   List<DropdownMenuItem> _dropdownTestItems2 = [];
   var _selectedTest2;
 
+  List _testList3 = [
+    {'no': 1, 'keyword': 'Semua'},
+    {'no': 2, 'keyword': 'Pcs'},
+    {'no': 3, 'keyword': 'Kg'},
+    {'no': 4, 'keyword': 'Paket'},
+  ];
+  List<DropdownMenuItem> _dropdownTestItems3 = [];
+  var _selectedTest3;
+
   @override
   void initState() {
     _dropdownTestItems = buildDropdownTestItems(_testList);
     _dropdownTestItems2 = buildDropdownTestItems(_testList2);
+    _dropdownTestItems3 = buildDropdownTestItems(_testList3);
     super.initState();
   }
 
@@ -70,6 +79,19 @@ class MapScreenState extends State<AddProduct> {
     return items;
   }
 
+  List<DropdownMenuItem> buildDropdownTestItems3(List _testList3) {
+    List<DropdownMenuItem> items = [];
+    for (var i in _testList3) {
+      items.add(
+        DropdownMenuItem(
+          value: i,
+          child: Text(i['keyword']),
+        ),
+      );
+    }
+    return items;
+  }
+
   onChangeDropdownTests(selectedTest) {
     print(selectedTest);
     setState(() {
@@ -84,58 +106,58 @@ class MapScreenState extends State<AddProduct> {
     });
   }
 
+  onChangeDropdownTests3(selectedTest3) {
+    print(selectedTest3);
+    setState(() {
+      _selectedTest3 = selectedTest3;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: const Text('TAMBAH PRODUK',
-            style:
-                TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
-        backgroundColor: Colors.blue,
-      ),
-      body: Container(
-        color: Colors.white,
-        child: ListView(
-          children: <Widget>[
-            Column(
-              children: <Widget>[
-                Container(
-                  height: 200.0,
-                  color: Colors.blue,
-                  child: Column(
-                    children: <Widget>[
-                      Padding(
-                          padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-                          child: Row(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                          )),
-                      Padding(
-                        padding: EdgeInsets.only(top: 20.0),
-                        child: Stack(fit: StackFit.loose, children: <Widget>[
-                          Row(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Container(
-                                  width: 100.0,
-                                  height: 100.0,
-                                  decoration: const BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    image: DecorationImage(
-                                      image:
-                                          ExactAssetImage('assets/tunas.png'),
-                                      fit: BoxFit.cover,
-                                    ),
-                                  )),
-                            ],
-                          ),
-                        ]),
-                      )
-                    ],
-                  ),
-                ),
-              ],
+        appBar: AppBar(
+          centerTitle: true,
+          title: const Text('TAMBAH PRODUK',
+              style: TextStyle(
+                  fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
+          backgroundColor: Colors.blue,
+        ),
+        body: ListView(
+          children: [
+            Container(
+              height: 200.0,
+              color: Colors.blue,
+              child: Column(
+                children: <Widget>[
+                  Padding(
+                      padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                      )),
+                  Padding(
+                    padding: EdgeInsets.only(top: 20.0),
+                    child: Stack(fit: StackFit.loose, children: <Widget>[
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                              width: 100.0,
+                              height: 100.0,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                                image: DecorationImage(
+                                  image: ExactAssetImage('assets/tunas.png'),
+                                  fit: BoxFit.cover,
+                                ),
+                              )),
+                        ],
+                      ),
+                    ]),
+                  )
+                ],
+              ),
             ),
             Container(
               padding: EdgeInsets.all(10),
@@ -186,6 +208,20 @@ class MapScreenState extends State<AddProduct> {
                   ),
                 )),
             Container(
+                padding: EdgeInsets.all(8),
+                child: Card(
+                  child: DropdownButtonFormField(
+                    isExpanded: true,
+                    hint: const Text('Pilih Satuan',
+                        style: TextStyle(
+                            fontFamily: 'Poppins',
+                            fontWeight: FontWeight.w400)),
+                    value: _selectedTest3,
+                    items: _dropdownTestItems3,
+                    onChanged: onChangeDropdownTests3,
+                  ),
+                )),
+            Container(
               padding: EdgeInsets.all(10),
               child: TextField(
                   controller: stokController,
@@ -211,8 +247,6 @@ class MapScreenState extends State<AddProduct> {
                   onPressed: () {},
                 )),
           ],
-        ),
-      ),
-    );
+        ));
   }
 }
