@@ -31,6 +31,17 @@ class MapScreenState extends State<UpdateProduk> {
             style:
                 TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.bold),
           ),
+          actions: <Widget>[
+            IconButton(
+              icon: const Icon(
+                Icons.delete,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                // confirmDeleteKategori(context);
+              },
+            )
+          ],
           backgroundColor: Colors.blue,
         ),
         body: Container(

@@ -157,19 +157,6 @@ class _HomeState extends State<Home> {
                           children: [
                             IconButton(
                               onPressed: () => {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) =>
-                                //           const UpdateProduk()),
-                                // ),
-                              },
-                              icon: const Icon(Icons.delete),
-                              iconSize: 30,
-                              color: Colors.red,
-                            ),
-                            IconButton(
-                              onPressed: () => {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
