@@ -1,23 +1,32 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:e_warung/screens/login.dart';
 import 'package:flutter/painting.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:e_warung/env.dart';
+import 'AppForm.dart';
 
 class TambahKategori extends StatefulWidget {
-  const TambahKategori({Key? key}) : super(key: key);
-
   @override
-  MapScreenState createState() => MapScreenState();
+  _CreateState createState() => _CreateState();
 }
 
-class MapScreenState extends State<TambahKategori> {
+class _CreateState extends State<TambahKategori> {
+  final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
-  @override
-  void initState() {
-    super.initState();
+
+  Future _createKategori() async {
+    return await http.post(
+      Uri.parse("${Env.URL_PREFIX}/create_kategori.php"),
+      body: {
+        "nama": nameController.text,
+      },
+    );
+  }
+
+  void _onConfirm(context) async {
+    await _createKategori();
+    Navigator.of(context)
+        .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
   }
 
   @override
@@ -48,7 +57,7 @@ class MapScreenState extends State<TambahKategori> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                             )),
                         Padding(
-                          padding: EdgeInsets.only(top: 20.0),
+                          padding: const EdgeInsets.only(top: 20.0),
                           child: Stack(fit: StackFit.loose, children: <Widget>[
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
@@ -75,15 +84,9 @@ class MapScreenState extends State<TambahKategori> {
                 ],
               ),
               Container(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Kategori',
-                    ),
-                    style: TextStyle(
-                        fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
+                padding: const EdgeInsets.all(10),
+                child:
+                    AppForm(formKey: formKey, nameController: nameController),
               ),
               Container(
                   height: 50,
@@ -91,17 +94,12 @@ class MapScreenState extends State<TambahKategori> {
                   child: RaisedButton(
                     textColor: Colors.white,
                     color: Colors.blue,
-                    child: Text('Simpan',
+                    child: const Text('Simpan',
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w700)),
                     onPressed: () {
-                      // print(nameController.text);
-                      // print(passwordController.text);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Dashboard()),
-                      // );
+                      _onConfirm(context);
                     },
                   )),
             ],

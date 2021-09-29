@@ -12,11 +12,8 @@ import 'package:http/http.dart' as http;
 
 import 'package:e_warung/env.dart';
 import 'package:e_warung/models/product.dart';
-import 'package:e_warung/models/kategori.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
-
   @override
   _HomeState createState() => _HomeState();
 }
@@ -31,6 +28,11 @@ class _HomeState extends State<Home> {
     super.initState();
     produk = getProdukList();
     kategori = getKategoriList();
+    refresh();
+  }
+
+  refresh() {
+    setState(() {});
   }
 
   Future<List<Produk>> getProdukList() async {
@@ -221,23 +223,11 @@ class _HomeState extends State<Home> {
                           children: [
                             IconButton(
                               onPressed: () => {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //       builder: (context) => const UpdateProduk()),
-                                // ),
-                              },
-                              icon: const Icon(Icons.delete),
-                              iconSize: 30,
-                              color: Colors.red,
-                            ),
-                            IconButton(
-                              onPressed: () => {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const UpdateKategori()),
+                                          UpdateKategori(kategori: data)),
                                 ),
                               },
                               icon: const Icon(Icons.edit),
