@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
+// ignore: must_be_immutable
 class AppForm extends StatefulWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
   TextEditingController nameController;
 
+  // ignore: use_key_in_widget_constructors
   AppForm({required this.formKey, required this.nameController});
 
   @override
