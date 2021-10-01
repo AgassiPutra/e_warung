@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:e_warung/screens/admin/appformproduk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:e_warung/screens/login.dart';
@@ -15,7 +16,11 @@ class UpdateProduk extends StatefulWidget {
 }
 
 class MapScreenState extends State<UpdateProduk> {
+  final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
+  TextEditingController hbController = TextEditingController();
+  TextEditingController hjController = TextEditingController();
+  TextEditingController stokController = TextEditingController();
   @override
   void initState() {
     super.initState();
@@ -79,13 +84,6 @@ class MapScreenState extends State<UpdateProduk> {
                                         fit: BoxFit.cover,
                                       ),
                                     )),
-                                const Text(
-                                  'Nama Produk',
-                                  style: TextStyle(
-                                      fontFamily: 'Poppins',
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 20),
-                                ),
                               ],
                             ),
                           ]),
@@ -95,40 +93,12 @@ class MapScreenState extends State<UpdateProduk> {
                   ),
                 ],
               ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Stok Barang',
-                  ),
-                  style: TextStyle(
-                      fontFamily: 'Poppins', fontWeight: FontWeight.w400),
-                ),
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Harga Beli',
-                    ),
-                    style: TextStyle(
-                        fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                child: TextField(
-                    controller: nameController,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      labelText: 'Harga Jual',
-                    ),
-                    style: TextStyle(
-                        fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-              ),
+              AppFormProduk(
+                  formKey: formKey,
+                  nameController: nameController,
+                  hbController: hbController,
+                  hjController: hjController,
+                  stokController: stokController),
               Container(
                   height: 50,
                   padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),

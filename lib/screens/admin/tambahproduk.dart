@@ -1,5 +1,4 @@
-import 'dart:convert';
-import 'package:dropdown_below/dropdown_below.dart';
+import 'package:e_warung/screens/admin/appformproduk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
@@ -12,106 +11,11 @@ class AddProduct extends StatefulWidget {
 }
 
 class MapScreenState extends State<AddProduct> {
+  final formKey = GlobalKey<FormState>();
   TextEditingController nameController = TextEditingController();
-  TextEditingController hargaController = TextEditingController();
+  TextEditingController hbController = TextEditingController();
+  TextEditingController hjController = TextEditingController();
   TextEditingController stokController = TextEditingController();
-
-  List _testList = [
-    {'no': 1, 'keyword': 'Semua'},
-    {'no': 2, 'keyword': 'Sayur'},
-    {'no': 3, 'keyword': 'Daging'},
-    {'no': 4, 'keyword': 'Buah'},
-    {'no': 5, 'keyword': 'Kerajinan'}
-  ];
-  List<DropdownMenuItem> _dropdownTestItems = [];
-  var _selectedTest;
-
-  List _testList2 = [
-    {'no': 1, 'keyword': 'Semua'},
-    {'no': 2, 'keyword': 'Merk1'},
-    {'no': 3, 'keyword': 'Merk2'},
-    {'no': 4, 'keyword': 'Merk3'},
-    {'no': 5, 'keyword': 'Merk4'}
-  ];
-  List<DropdownMenuItem> _dropdownTestItems2 = [];
-  var _selectedTest2;
-
-  List _testList3 = [
-    {'no': 1, 'keyword': 'Semua'},
-    {'no': 2, 'keyword': 'Pcs'},
-    {'no': 3, 'keyword': 'Kg'},
-    {'no': 4, 'keyword': 'Paket'},
-  ];
-  List<DropdownMenuItem> _dropdownTestItems3 = [];
-  var _selectedTest3;
-
-  @override
-  void initState() {
-    _dropdownTestItems = buildDropdownTestItems(_testList);
-    _dropdownTestItems2 = buildDropdownTestItems(_testList2);
-    _dropdownTestItems3 = buildDropdownTestItems(_testList3);
-    super.initState();
-  }
-
-  List<DropdownMenuItem> buildDropdownTestItems(List _testList) {
-    List<DropdownMenuItem> items = [];
-    for (var i in _testList) {
-      items.add(
-        DropdownMenuItem(
-          value: i,
-          child: Text(i['keyword']),
-        ),
-      );
-    }
-    return items;
-  }
-
-  List<DropdownMenuItem> buildDropdownTestItems2(List _testList2) {
-    List<DropdownMenuItem> items = [];
-    for (var i in _testList2) {
-      items.add(
-        DropdownMenuItem(
-          value: i,
-          child: Text(i['keyword']),
-        ),
-      );
-    }
-    return items;
-  }
-
-  List<DropdownMenuItem> buildDropdownTestItems3(List _testList3) {
-    List<DropdownMenuItem> items = [];
-    for (var i in _testList3) {
-      items.add(
-        DropdownMenuItem(
-          value: i,
-          child: Text(i['keyword']),
-        ),
-      );
-    }
-    return items;
-  }
-
-  onChangeDropdownTests(selectedTest) {
-    print(selectedTest);
-    setState(() {
-      _selectedTest = selectedTest;
-    });
-  }
-
-  onChangeDropdownTests2(selectedTest2) {
-    print(selectedTest2);
-    setState(() {
-      _selectedTest2 = selectedTest2;
-    });
-  }
-
-  onChangeDropdownTests3(selectedTest3) {
-    print(selectedTest3);
-    setState(() {
-      _selectedTest3 = selectedTest3;
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -159,84 +63,17 @@ class MapScreenState extends State<AddProduct> {
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                  controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Nama Produk',
-                  ),
-                  style: TextStyle(
-                      fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-            ),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                  controller: hargaController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Harga Jual',
-                  ),
-                  style: TextStyle(
-                      fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-            ),
-            Container(
-                padding: EdgeInsets.all(8),
-                child: Card(
-                    child: DropdownButtonFormField(
-                  isExpanded: true,
-                  hint: const Text('Pilih Merk',
-                      style: TextStyle(
-                          fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-                  value: _selectedTest2,
-                  items: _dropdownTestItems2,
-                  onChanged: onChangeDropdownTests2,
-                ))),
-            Container(
-                padding: EdgeInsets.all(8),
-                child: Card(
-                  child: DropdownButtonFormField(
-                    isExpanded: true,
-                    hint: const Text('Pilih Kategori',
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400)),
-                    value: _selectedTest,
-                    items: _dropdownTestItems,
-                    onChanged: onChangeDropdownTests,
-                  ),
-                )),
-            Container(
-                padding: EdgeInsets.all(8),
-                child: Card(
-                  child: DropdownButtonFormField(
-                    isExpanded: true,
-                    hint: const Text('Pilih Satuan',
-                        style: TextStyle(
-                            fontFamily: 'Poppins',
-                            fontWeight: FontWeight.w400)),
-                    value: _selectedTest3,
-                    items: _dropdownTestItems3,
-                    onChanged: onChangeDropdownTests3,
-                  ),
-                )),
-            Container(
-              padding: EdgeInsets.all(10),
-              child: TextField(
-                  controller: stokController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Stok',
-                  ),
-                  style: TextStyle(
-                      fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-            ),
+            AppFormProduk(
+                formKey: formKey,
+                nameController: nameController,
+                hbController: hbController,
+                hjController: hjController,
+                stokController: stokController),
             Container(
                 height: 50,
                 padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                 child: TextButton(
-                  child: Text('Tambah',
+                  child: const Text('Tambah',
                       style: TextStyle(
                           fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
                   style: TextButton.styleFrom(
