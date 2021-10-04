@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+//AppForm untuk TextField CRUD pada Produk
+
 // ignore: must_be_immutable
 class AppFormProduk extends StatefulWidget {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
