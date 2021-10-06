@@ -18,3 +18,27 @@ class Warung {
         'stok': stok,
       };
 }
+
+class Produk {
+  Produk({
+    required this.productId,
+    required this.namaProduk,
+    required this.sisaStok,
+  });
+
+  String productId;
+  String namaProduk;
+  String sisaStok;
+
+  factory Produk.fromJson(Map<String, dynamic> json) => Produk(
+        productId: json["product_id"],
+        namaProduk: json["nama_produk"],
+        sisaStok: json["sisa_stok"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "product_id": productId,
+        "nama_produk": namaProduk,
+        "sisa_stok": sisaStok,
+      };
+}
