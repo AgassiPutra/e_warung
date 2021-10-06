@@ -1,7 +1,11 @@
+import 'dart:convert';
 import 'package:e_warung/screens/warung/detail_produk.dart';
 import 'package:e_warung/screens/warung/keranjang.dart';
 import "package:flutter/material.dart";
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:e_warung/models/warung/katalog.dart';
+import 'package:e_warung/env.dart';
 
 class Katalog extends StatefulWidget{
   const Katalog({Key? key}) : super(key: key);
@@ -10,6 +14,29 @@ class Katalog extends StatefulWidget{
   _KatalogState createState() => _KatalogState();
 }
 class _KatalogState extends State<Katalog>{
+  late Future<List<KatalogModels>> katalog;
+
+  @override
+  void initState(){
+    super.initState();
+    katalog = getKatalogList();
+    refresh();
+  }
+
+  refresh(){
+    setState((){});
+  }
+
+  Future<List<KatalogModels>> getKatalogList() async{
+    final response = await http.get(Uri.parse("${Env.URL_PREFIX}/katalog"));
+    final items = json.decode(response.body).cast<Map<String, dynamic>>();
+    List<KatalogModels> katalog = items.map<KatalogModels>((json){
+      return KatalogModels.fromJson(json);
+    }).toList();
+
+    return katalog;
+  }
+
   String dropdownValue = 'Semua';
   int keranjang = 4;
   @override
@@ -109,18 +136,19 @@ class _KatalogState extends State<Katalog>{
     
   }
   Widget gridViewKatalog(){
-    final List<Map> myKatalogs =
-      List.generate(1000, (index) => {"id": index, "name": "Katalog $index"})
-          .toList();
-
-    return GridView.builder(
+    return FutureBuilder<List<KatalogModels>>(
+      future: katalog,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        if(!snapshot.hasData) return const Center(child: CircularProgressIndicator());
+        return GridView.builder(
             gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 2,
               mainAxisSpacing: 10,
               crossAxisSpacing: 10,
             ),
-            itemCount: myKatalogs.length,
+            itemCount: snapshot.data.length,
             itemBuilder: (BuildContext context, index) {
+              var data = snapshot.data[index];
               return GestureDetector(
                 onTap: (){
                   Navigator.push(
@@ -141,8 +169,8 @@ class _KatalogState extends State<Katalog>{
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Text(myKatalogs[index]["name"],style:TextStyle(fontSize:15)),
-                                Text("Rp.3000",style:TextStyle(fontSize:13,color: Colors.grey))
+                                Text(data.nama,style:TextStyle(fontSize:15)),
+                                Text(data.hargaJual,style:TextStyle(fontSize:13,color: Colors.grey))
                               ],
                             ),
                             // Icon(Icons.add)
@@ -153,5 +181,7 @@ class _KatalogState extends State<Katalog>{
                   )
               ));
             });
+      }
+    );
   }
 }
