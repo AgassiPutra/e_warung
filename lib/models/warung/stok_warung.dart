@@ -1,26 +1,53 @@
-class StokWarungModels{
-  final int id;
-  final String namaWarung;
-  final int idProduk;
-  final String namaProduk;
-  final String stok;
+import 'dart:convert';
 
-  StokWarungModels({required this.id, required this.namaWarung, required this.idProduk, required this.namaProduk, required this.stok});
+StokWarungModels stokWarungModelsFromJson(String str) => StokWarungModels.fromJson(json.decode(str));
 
-  factory StokWarungModels.fromJson(Map<String, dynamic> json) {
-    return StokWarungModels(
-      id: json['id'],
-      namaWarung: json['nama_warung'],
-      idProduk: json['produk']['product_id'],
-      namaProduk: json['produk']['nama_produk'],
-      stok: json['produk']['sisa_stok'],
+String StokWarungModelsToJson(StokWarungModels data) => json.encode(data.toJson());
+
+class StokWarungModels {
+    StokWarungModels({
+        required this.id,
+        required this.namaWarung,
+        required this.produk,
+    });
+
+    String id;
+    String namaWarung;
+    List<Produk> produk;
+
+    factory StokWarungModels.fromJson(Map<String, dynamic> json) => StokWarungModels(
+        id: json["id"],
+        namaWarung: json["nama_warung"],
+        produk: List<Produk>.from(json["produk"].map((x) => Produk.fromJson(x))),
     );
-  }
 
-  Map<String, dynamic> toJson() => {
-        'namaWarung': namaWarung,
-        'idProduk': idProduk,
-        'namaProduk': namaProduk,
-        'stok': stok,
-      };
+    Map<String, dynamic> toJson() => {
+        "id": id,
+        "nama_warung": namaWarung,
+        "produk": List<dynamic>.from(produk.map((x) => x.toJson())),
+    };
+}
+
+class Produk {
+    Produk({
+        required this.productId,
+        required this.namaProduk,
+        required this.sisaStok,
+    });
+
+    String productId;
+    String namaProduk;
+    String sisaStok;
+
+    factory Produk.fromJson(Map<String, dynamic> json) => Produk(
+        productId: json["product_id"],
+        namaProduk: json["nama_produk"],
+        sisaStok: json["sisa_stok"],
+    );
+
+    Map<String, dynamic> toJson() => {
+        "product_id": productId,
+        "nama_produk": namaProduk,
+        "sisa_stok": sisaStok,
+    };
 }
