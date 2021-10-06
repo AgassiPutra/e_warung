@@ -30,7 +30,7 @@ class ProdukRequest {
   String namaProduk;
   String sisaStok;
 
-  factory ProdukRequest.fromJson(Map<String, dynamic> json) => Produk(
+  factory ProdukRequest.fromJson(Map<String, dynamic> json) => ProdukRequest(
         productId: json["product_id"],
         namaProduk: json["nama_produk"],
         sisaStok: json["sisa_stok"],
