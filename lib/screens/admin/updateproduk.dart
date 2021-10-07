@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:e_warung/models/product.dart';
 import 'package:e_warung/screens/admin/appformproduk.dart';
+import 'package:e_warung/screens/admin/dashboard.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
@@ -44,9 +45,10 @@ class MapScreenState extends State<UpdateProduk> {
         'id': widget.produk.id.toString(),
       },
     );
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Home()),
-        (Route<dynamic> route) => false);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Dashboard()),
+    ).then((value) => setState(() {}));
   }
 
   void confirmDeleteProduk(context) {
@@ -80,9 +82,10 @@ class MapScreenState extends State<UpdateProduk> {
     scaffold.showSnackBar(
       const SnackBar(content: Text('Data Berhasil Diubah')),
     );
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => Home()),
-    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Home()),
+    ).then((value) => setState(() {}));
   }
 
   @override

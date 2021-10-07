@@ -38,9 +38,10 @@ class _EditState extends State<UpdateKategori> {
         'id': widget.kategori.id.toString(),
       },
     );
-    Navigator.of(context).pushAndRemoveUntil(
-        MaterialPageRoute(builder: (context) => Home()),
-        (Route<dynamic> route) => false);
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Dashboard()),
+    ).then((value) => setState(() {}));
   }
 
   void confirmDeleteKategori(context) {
@@ -74,9 +75,10 @@ class _EditState extends State<UpdateKategori> {
     scaffold.showSnackBar(
       SnackBar(content: const Text('Data Berhasil Diubah')),
     );
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => Home()),
-    );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Home()),
+    ).then((value) => setState(() {}));
   }
 
   @override

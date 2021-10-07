@@ -27,9 +27,10 @@ class _CreateState extends State<TambahKategori> {
 
   void _onConfirm(context) async {
     await _createKategori();
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(builder: (_) => Home()),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Dashboard()),
+    ).then((value) => setState(() {}));
   }
 
   @override

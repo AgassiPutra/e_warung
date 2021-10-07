@@ -35,9 +35,10 @@ class MapScreenState extends State<AddProduct> {
 
   void _onConfirm(context) async {
     await _createProduk();
-    // Navigator.of(context).push(
-    //   MaterialPageRoute(builder: (_) => Home()),
-    // );
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Dashboard()),
+    ).then((value) => setState(() {}));
   }
 
   @override
