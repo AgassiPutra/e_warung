@@ -1,3 +1,4 @@
+import 'package:e_warung/screens/admin/katalog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
@@ -26,9 +27,9 @@ class _CreateState extends State<TambahKategori> {
 
   void _onConfirm(context) async {
     await _createKategori();
-    Navigator.of(context).push(
-      MaterialPageRoute(builder: (_) => Dashboard()),
-    );
+    // Navigator.of(context).push(
+    //   MaterialPageRoute(builder: (_) => Home()),
+    // );
   }
 
   @override
