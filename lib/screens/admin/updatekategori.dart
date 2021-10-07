@@ -9,6 +9,8 @@ import 'package:flutter/painting.dart';
 import 'package:http/http.dart' as http;
 import 'package:e_warung/env.dart';
 
+import 'dashboard.dart';
+
 class UpdateKategori extends StatefulWidget {
   final Kategori kategori;
   UpdateKategori({required this.kategori});
@@ -71,6 +73,9 @@ class _EditState extends State<UpdateKategori> {
     final scaffold = ScaffoldMessenger.of(context);
     scaffold.showSnackBar(
       SnackBar(content: const Text('Data Berhasil Diubah')),
+    );
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => Home()),
     );
   }
 

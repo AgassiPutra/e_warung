@@ -4,6 +4,7 @@ import 'package:flutter/painting.dart';
 import 'package:http/http.dart' as http;
 import 'package:e_warung/env.dart';
 import 'appforms.dart';
+import 'dashboard.dart';
 
 class TambahKategori extends StatefulWidget {
   @override
@@ -25,8 +26,9 @@ class _CreateState extends State<TambahKategori> {
 
   void _onConfirm(context) async {
     await _createKategori();
-    Navigator.of(context)
-        .pushNamedAndRemoveUntil('/', (Route<dynamic> route) => false);
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => Dashboard()),
+    );
   }
 
   @override

@@ -1,16 +1,19 @@
 import 'dart:convert';
 
+import 'package:e_warung/models/product.dart';
 import 'package:e_warung/screens/admin/appformproduk.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:e_warung/screens/login.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
-import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:e_warung/env.dart';
+
+import 'katalog.dart';
 
 class UpdateProduk extends StatefulWidget {
-  const UpdateProduk({Key? key}) : super(key: key);
-
+  late final Produk produk;
+  UpdateProduk({required this.produk});
   @override
   MapScreenState createState() => MapScreenState();
 }
@@ -21,9 +24,74 @@ class MapScreenState extends State<UpdateProduk> {
   TextEditingController hbController = TextEditingController();
   TextEditingController hjController = TextEditingController();
   TextEditingController stokController = TextEditingController();
+  Future editProduk() async {
+    return await http.post(
+      Uri.parse("${Env.URL_PREFIX}/update.php"),
+      body: {
+        "id": widget.produk.id.toString(),
+        "nama": nameController.text,
+        "harga_beli": hbController.text,
+        "harga_jual": hjController.text,
+        "stok": stokController.text,
+      },
+    );
+  }
+
+  void deleteProduk(context) async {
+    await http.post(
+      Uri.parse("${Env.URL_PREFIX}/delete.php"),
+      body: {
+        'id': widget.produk.id.toString(),
+      },
+    );
+    Navigator.of(context).pushAndRemoveUntil(
+        MaterialPageRoute(builder: (context) => Home()),
+        (Route<dynamic> route) => false);
+  }
+
+  void confirmDeleteProduk(context) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          content: Text('Yakin ingin menghapus produk ini ?'),
+          actions: <Widget>[
+            RaisedButton(
+              child: Icon(Icons.cancel),
+              color: Colors.red,
+              textColor: Colors.white,
+              onPressed: () => Navigator.of(context).pop(),
+            ),
+            RaisedButton(
+              child: Icon(Icons.check_circle),
+              color: Colors.blue,
+              textColor: Colors.white,
+              onPressed: () => deleteProduk(context),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _onConfirm(context) async {
+    await editProduk();
+    final scaffold = ScaffoldMessenger.of(context);
+    scaffold.showSnackBar(
+      const SnackBar(content: Text('Data Berhasil Diubah')),
+    );
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => Home()),
+    );
+  }
+
   @override
   void initState() {
     super.initState();
+    nameController = TextEditingController(text: widget.produk.nama);
+    hbController = TextEditingController(text: widget.produk.harga_beli);
+    hjController = TextEditingController(text: widget.produk.harga_jual);
+    stokController = TextEditingController(text: widget.produk.stok);
   }
 
   @override
@@ -43,7 +111,7 @@ class MapScreenState extends State<UpdateProduk> {
                 color: Colors.white,
               ),
               onPressed: () {
-                // confirmDeleteKategori(context);
+                confirmDeleteProduk(context);
               },
             )
           ],
@@ -105,17 +173,12 @@ class MapScreenState extends State<UpdateProduk> {
                   child: RaisedButton(
                     textColor: Colors.white,
                     color: Colors.blue,
-                    child: Text('Simpan',
+                    child: const Text('Simpan',
                         style: TextStyle(
                             fontFamily: 'Poppins',
                             fontWeight: FontWeight.w700)),
                     onPressed: () {
-                      // print(nameController.text);
-                      // print(passwordController.text);
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(builder: (context) => Dashboard()),
-                      // );
+                      _onConfirm(context);
                     },
                   )),
             ],

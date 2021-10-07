@@ -1,7 +1,11 @@
+import 'package:e_warung/env.dart';
 import 'package:e_warung/screens/admin/appformproduk.dart';
+import 'package:e_warung/screens/admin/dashboard.dart';
+import 'package:e_warung/screens/admin/katalog.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
+import 'package:http/http.dart' as http;
 
 class AddProduct extends StatefulWidget {
   const AddProduct({Key? key}) : super(key: key);
@@ -16,6 +20,25 @@ class MapScreenState extends State<AddProduct> {
   TextEditingController hbController = TextEditingController();
   TextEditingController hjController = TextEditingController();
   TextEditingController stokController = TextEditingController();
+
+  Future _createProduk() async {
+    return await http.post(
+      Uri.parse("${Env.URL_PREFIX}/create.php"),
+      body: {
+        "nama": nameController.text,
+        "harga_beli": hbController.text,
+        "harga_jual": hjController.text,
+        "stok": stokController.text,
+      },
+    );
+  }
+
+  void _onConfirm(context) async {
+    await _createProduk();
+    Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => Dashboard()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +104,9 @@ class MapScreenState extends State<AddProduct> {
                     backgroundColor: Colors.blue,
                     elevation: 20,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    _onConfirm(context);
+                  },
                 )),
           ],
         ));

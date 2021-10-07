@@ -1,3 +1,3 @@
 class Env {
-  static String URL_PREFIX = "http://192.168.1.33/flutter_api";
+  static String URL_PREFIX = "http://192.168.1.40/flutter_api";
 }

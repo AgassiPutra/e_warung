@@ -150,7 +150,7 @@ class _HomeState extends State<Home> {
                             style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w400)),
-                        subtitle: Text(data.harga,
+                        subtitle: Text(data.harga_beli,
                             style: const TextStyle(fontFamily: 'Poppins')),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
@@ -160,7 +160,8 @@ class _HomeState extends State<Home> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => UpdateProduk()),
+                                      builder: (context) =>
+                                          UpdateProduk(produk: data)),
                                 ),
                               },
                               icon: const Icon(Icons.edit),
