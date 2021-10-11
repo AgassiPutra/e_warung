@@ -1,14 +1,22 @@
 class KatalogModels {
-  final int id;
+  final String id;
   final String nama;
   final String kategori;
   final String hargaBeli;
   final String hargaJual;
-  final int stok;
+  final String stok;
   final String satuan;
-  final bool isReady;
+  final String isReady;
 
-  KatalogModels({required this.id, required this.nama, required this.kategori,required this.hargaBeli,required this.hargaJual,required this.stok,required this.satuan,required this.isReady});
+  KatalogModels(
+    {required this.id,
+     required this.nama, 
+     required this.kategori,
+     required this.hargaBeli,
+     required this.hargaJual,
+     required this.stok,
+     required this.satuan,
+     required this.isReady});
 
   factory KatalogModels.fromJson(Map<String, dynamic> json) {
     return KatalogModels(
