@@ -129,7 +129,10 @@ class _HomeState extends State<Home> {
       future: produk,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         // By default, show a loading spinner.
-        if (!snapshot.hasData) return const CircularProgressIndicator();
+
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
         // Render student lists
         return ListView.builder(
           padding: const EdgeInsets.all(8),
@@ -185,7 +188,9 @@ class _HomeState extends State<Home> {
       future: kategori,
       builder: (BuildContext context, AsyncSnapshot snapshot) {
         // By default, show a loading spinner.
-        if (!snapshot.hasData) return const CircularProgressIndicator();
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
         // Render student lists
         return ListView.builder(
           padding: const EdgeInsets.all(8),
