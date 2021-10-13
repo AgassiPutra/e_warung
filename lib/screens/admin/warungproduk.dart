@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
-import 'package:material_floating_search_bar/material_floating_search_bar.dart';
 
 class WarungProduk extends StatelessWidget {
   final myProducts = List<String>.generate(20, (i) => 'Product $i');
@@ -47,7 +46,7 @@ class WarungProduk extends StatelessWidget {
                     child: Padding(
                         padding: EdgeInsets.all(10),
                         child: Text(myProducts[index],
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w400))),
                   );

@@ -153,7 +153,7 @@ class _HomeState extends State<Home> {
                             style: const TextStyle(
                                 fontFamily: 'Poppins',
                                 fontWeight: FontWeight.w400)),
-                        subtitle: Text(data.harga_beli,
+                        subtitle: Text('Rp ${data.harga_beli}',
                             style: const TextStyle(fontFamily: 'Poppins')),
                         trailing: Row(
                           mainAxisSize: MainAxisSize.min,
