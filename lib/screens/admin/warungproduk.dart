@@ -31,13 +31,6 @@ class WarungProduk extends StatelessWidget {
                           fontWeight: FontWeight.w700,
                           fontSize: 40),
                     ),
-                    subtitle: Text(
-                      'Nama Pemilik',
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w300,
-                          fontSize: 25),
-                    ),
                   ),
                 ],
               ),
