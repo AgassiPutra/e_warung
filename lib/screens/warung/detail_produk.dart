@@ -1,19 +1,17 @@
+import 'package:e_warung/models/warung/katalog.dart';
 import 'package:flutter/material.dart';
 
-class DetailProduk extends StatefulWidget {
-  const DetailProduk({Key? key}) : super(key: key);
+class DetailKatalog extends StatefulWidget {
+  late final KatalogModels produk;
+  DetailKatalog({required this.produk});
 
   @override
-  _DetailProdukState createState() => _DetailProdukState();
+  _DetailKatalogState createState() => _DetailKatalogState();
 }
 
-class _DetailProdukState extends State<DetailProduk> {
-  Color _radioBorder = Colors.grey;
-  Color _radioText = Colors.black87;
-  Color _radioFill = Colors.white;
+class _DetailKatalogState extends State<DetailKatalog> {
   int _counter = 0;
-  // TextEditingController _textCounter = new TextEditingController();
-
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,10 +37,10 @@ class _DetailProdukState extends State<DetailProduk> {
             padding: EdgeInsets.all(15),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text("Rp.20.000",
+              Text("Rp. ${widget.produk.hargaJual}",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
               SizedBox(height: 10),
-              Text("Buah Apel Batu Malang"),
+              Text("${widget.produk.nama}"),
               Row(mainAxisAlignment: MainAxisAlignment.end, children: [
                 Container(
                     width: 125,

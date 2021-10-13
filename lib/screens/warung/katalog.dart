@@ -153,7 +153,7 @@ class _KatalogState extends State<Katalog>{
                 onTap: (){
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context)=> const DetailProduk())
+                    MaterialPageRoute(builder: (context)=> DetailKatalog(produk: data))
                   );
                 },
                 child: Card(
@@ -170,7 +170,7 @@ class _KatalogState extends State<Katalog>{
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(data.nama,style:TextStyle(fontSize:15)),
-                                Text(data.hargaJual,style:TextStyle(fontSize:13,color: Colors.grey))
+                                Text('Rp. ${data.hargaJual}',style:TextStyle(fontSize:13,color: Colors.grey))
                               ],
                             ),
                             // Icon(Icons.add)
