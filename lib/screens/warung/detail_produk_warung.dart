@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/painting.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:e_warung/models/warung/stok_warung.dart';
 import 'dart:math';
 
 class DetailProduk extends StatefulWidget {
-  const DetailProduk({Key? key}) : super(key: key);
+  late final StokWarungModels produk;
+  DetailProduk({required this.produk});
 
   @override
   MapScreenState createState() => MapScreenState();
@@ -19,79 +21,17 @@ class MapScreenState extends State<DetailProduk> {
   TextEditingController hargaController = TextEditingController();
   TextEditingController stokController = TextEditingController();
 
-  List _testList = [
-    {'no': 1, 'keyword': 'Semua'},
-    {'no': 2, 'keyword': 'Sayur'},
-    {'no': 3, 'keyword': 'Daging'},
-    {'no': 4, 'keyword': 'Buah'},
-    {'no': 5, 'keyword': 'Kerajinan'}
-  ];
-  List<DropdownMenuItem> _dropdownTestItems = [];
-  var _selectedTest;
-
-  List _testList2 = [
-    {'no': 1, 'keyword': 'Semua'},
-    {'no': 2, 'keyword': 'Merk1'},
-    {'no': 3, 'keyword': 'Merk2'},
-    {'no': 4, 'keyword': 'Merk3'},
-    {'no': 5, 'keyword': 'Merk4'}
-  ];
-  List<DropdownMenuItem> _dropdownTestItems2 = [];
-  var _selectedTest2;
-
   @override
   void initState() {
-    _dropdownTestItems = buildDropdownTestItems(_testList);
-    _dropdownTestItems2 = buildDropdownTestItems(_testList2);
     super.initState();
+    _counter = int.parse(widget.produk.sisaStok);
   }
-
-  List<DropdownMenuItem> buildDropdownTestItems(List _testList) {
-    List<DropdownMenuItem> items = [];
-    for (var i in _testList) {
-      items.add(
-        DropdownMenuItem(
-          value: i,
-          child: Text(i['keyword']),
-        ),
-      );
-    }
-    return items;
-  }
-
-  List<DropdownMenuItem> buildDropdownTestItems2(List _testList2) {
-    List<DropdownMenuItem> items = [];
-    for (var i in _testList2) {
-      items.add(
-        DropdownMenuItem(
-          value: i,
-          child: Text(i['keyword']),
-        ),
-      );
-    }
-    return items;
-  }
-
-  onChangeDropdownTests(selectedTest) {
-    print(selectedTest);
-    setState(() {
-      _selectedTest = selectedTest;
-    });
-  }
-
-  onChangeDropdownTests2(selectedTest2) {
-    print(selectedTest2);
-    setState(() {
-      _selectedTest2 = selectedTest2;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: const Text('DETAIL PRODUK',
+        title: const Text('',
             style:
                 TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
         backgroundColor: Colors.blue,
@@ -193,9 +133,9 @@ class MapScreenState extends State<DetailProduk> {
                                 const EdgeInsets.only(left: 25.0, right: 25.0),
                             child: Row(
                               mainAxisSize: MainAxisSize.max,
-                              children: const <Widget>[
+                              children: <Widget>[
                                 Text(
-                                  'Pembalut',
+                                  '${widget.produk.namaProduk}',
                                   style: TextStyle(
                                       fontFamily: 'Poppins',
                                       fontWeight: FontWeight.w400,

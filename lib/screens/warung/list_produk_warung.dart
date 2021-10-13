@@ -43,7 +43,7 @@ class _ListWarungProdukState extends State<ListWarungProduk> {
       home: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text('BARANG',
+          title: const Text('Stok Warungg',
               style: TextStyle(
                   fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
           backgroundColor: Colors.blue,
@@ -64,14 +64,13 @@ class _ListWarungProdukState extends State<ListWarungProduk> {
       future: stokWarung,
       builder: (BuildContext context, AsyncSnapshot snapshot){
         if(!snapshot.hasData) return const Center(child: CircularProgressIndicator());
-        List<Produk> produk = snapshot.data.produk;
+        // List<Produk> produk = snapshot.data.produk;
         return ListView.builder(
           physics: NeverScrollableScrollPhysics(),
           padding: const EdgeInsets.all(8),
           itemCount: snapshot.data.length,
           itemBuilder: (BuildContext context, int index) {
             var data = snapshot.data[index];
-
             return Container(
                 height: 100,
                 child: Card(
@@ -82,12 +81,12 @@ class _ListWarungProdukState extends State<ListWarungProduk> {
                         ListTile(
                           leading: Container(
                               height: double.infinity, child: Icon(Icons.store)),
-                          title: Text('${data.namaWarung}',
+                          title: Text('${data.namaProduk}',
                               style: TextStyle(
                                   fontFamily: 'Poppins',
                                   fontWeight: FontWeight.w400)),
                           subtitle: Text(
-                            'Stok : ${data.produk['sisaStok']}',
+                            'Stok : ${data.sisaStok}',
                             style: TextStyle(color: Colors.black.withOpacity(0.6)),
                           ),
                           trailing: Row(mainAxisSize: MainAxisSize.min, children: [
@@ -96,7 +95,7 @@ class _ListWarungProdukState extends State<ListWarungProduk> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) => DetailProduk()),
+                                      builder: (context) => DetailProduk(produk: data)),
                                 );
                               },
                               icon: const Icon(Icons.arrow_forward_ios_rounded),
