@@ -1,44 +1,40 @@
 class Warung {
   final int id;
-  final String nama;
-  final String stok;
+  final String nama_warung;
+  final int jumlah_produk;
 
-  Warung({required this.id, required this.nama, required this.stok});
+  Warung(
+      {required this.id,
+      required this.nama_warung,
+      required this.jumlah_produk});
 
   factory Warung.fromJson(Map<String, dynamic> json) {
     return Warung(
       id: json['id'],
-      nama: json['nama'],
-      stok: json['stok'],
+      nama_warung: json['nama_warung'],
+      jumlah_produk: json['jumlah_produk'],
     );
   }
 
   Map<String, dynamic> toJson() => {
-        'nama': nama,
-        'stok': stok,
+        'nama_warung': nama_warung,
+        'jumlah_produk': jumlah_produk,
       };
 }
 
-class Produk {
-  Produk({
-    required this.productId,
-    required this.namaProduk,
-    required this.sisaStok,
-  });
+class ProdukWarung {
+  final int id;
+  final String nama_produk;
 
-  String productId;
-  String namaProduk;
-  String sisaStok;
+  ProdukWarung({required this.id, required this.nama_produk});
 
-  factory Produk.fromJson(Map<String, dynamic> json) => Produk(
-        productId: json["product_id"],
-        namaProduk: json["nama_produk"],
-        sisaStok: json["sisa_stok"],
+  factory ProdukWarung.fromJson(Map<String, dynamic> json) => ProdukWarung(
+        id: json["id"],
+        nama_produk: json["nama_produk"],
       );
 
   Map<String, dynamic> toJson() => {
-        "product_id": productId,
-        "nama_produk": namaProduk,
-        "sisa_stok": sisaStok,
+        "id": id,
+        "nama_produk": nama_produk,
       };
 }

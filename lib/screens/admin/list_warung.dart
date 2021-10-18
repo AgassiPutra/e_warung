@@ -80,7 +80,8 @@ class _WarungState extends State<ListWarung> {
                     onPressed: () async {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => WarungProduk()),
+                        MaterialPageRoute(
+                            builder: (context) => WarungProduk(warung: data)),
                       );
                     },
                     child: Container(
@@ -91,12 +92,13 @@ class _WarungState extends State<ListWarung> {
                             leading: Container(
                                 height: double.infinity,
                                 child: Icon(Icons.store)),
-                            title: Text(data.nama,
+                            title: Text(data.nama_warung,
                                 style: const TextStyle(
                                     fontFamily: 'Poppins',
                                     fontWeight: FontWeight.w400)),
                             subtitle: Text(
-                              'Stok : ' + data.stok,
+                              'Jumlah Produk : ' +
+                                  data.jumlah_produk.toString(),
                               style: TextStyle(
                                   fontSize: 15,
                                   color: Colors.black.withOpacity(0.6)),

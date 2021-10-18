@@ -1,10 +1,38 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+import 'package:e_warung/env.dart';
+import 'package:e_warung/models/warung.dart';
 
-class WarungProduk extends StatelessWidget {
-  final myProducts = List<String>.generate(20, (i) => 'Product $i');
+class WarungProduk extends StatefulWidget {
+  final Warung warung;
+  WarungProduk({required this.warung});
   @override
+  _WarungProduk createState() => _WarungProduk();
+}
+
+class _WarungProduk extends State<WarungProduk> {
+  late Future<List<ProdukWarung>> produk;
+  final produkListKey = GlobalKey<_WarungProduk>();
+  @override
+  void initState() {
+    super.initState();
+    produk = getProdukList();
+  }
+
+  Future<List<ProdukWarung>> getProdukList() async {
+    final response = await http
+        .get(Uri.parse("${Env.URL_PREFIX}/getstok.php?id=${widget.warung.id}"));
+    final items = json.decode(response.body).cast<Map<String, dynamic>>();
+    List<ProdukWarung> produk = items.map<ProdukWarung>((json) {
+      return ProdukWarung.fromJson(json);
+    }).toList();
+
+    return produk;
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -14,46 +42,54 @@ class WarungProduk extends StatelessWidget {
                 TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
         backgroundColor: Colors.blue,
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: const <Widget>[
-                  ListTile(
-                    leading: Icon(Icons.store, size: 50),
-                    title: Text(
-                      'Nama Warung',
-                      style: TextStyle(
-                          fontFamily: 'Poppins',
-                          fontWeight: FontWeight.w700,
-                          fontSize: 40),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                padding: EdgeInsets.all(5),
-                scrollDirection: Axis.vertical,
-                shrinkWrap: true,
-                itemCount: myProducts.length,
-                itemBuilder: (context, index) {
-                  return Card(
-                    key: UniqueKey(),
-                    child: Padding(
-                        padding: EdgeInsets.all(10),
-                        child: Text(myProducts[index],
+      body: Stack(
+        children: <Widget>[
+          buildListViewbyIndex(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildListViewbyIndex() {
+    return FutureBuilder<List<ProdukWarung>>(
+      future: produk,
+      builder: (BuildContext context, AsyncSnapshot snapshot) {
+        // By default, show a loading spinner.
+        if (!snapshot.hasData) {
+          return const Center(child: CircularProgressIndicator());
+        }
+        // Render student lists
+        return ListView.builder(
+          padding: const EdgeInsets.all(8),
+          itemCount: snapshot.data.length,
+          itemBuilder: (BuildContext context, int index) {
+            var data = snapshot.data[index];
+            return Container(
+              height: 100,
+              child: Card(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10.0),
+                ),
+                child: Container(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      ListTile(
+                        leading: Container(
+                            height: double.infinity, child: Icon(Icons.store)),
+                        title: Text(data.nama_produk,
                             style: const TextStyle(
                                 fontFamily: 'Poppins',
-                                fontWeight: FontWeight.w400))),
-                  );
-                }),
-          ],
-        ),
-      ),
+                                fontWeight: FontWeight.w400)),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
     );
   }
 }
