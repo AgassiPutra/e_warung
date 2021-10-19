@@ -42,10 +42,36 @@ class _WarungProduk extends State<WarungProduk> {
                 TextStyle(fontFamily: 'Poppins', fontWeight: FontWeight.w700)),
         backgroundColor: Colors.blue,
       ),
-      body: Stack(
-        children: <Widget>[
-          buildListViewbyIndex(),
-        ],
+      body: Container(
+        child: Column(
+          children: [
+            Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: Icon(
+                      Icons.store,
+                      size: 50,
+                    ),
+                    title: Center(
+                        child: Text(
+                      '${widget.warung.nama_warung}',
+                      style: TextStyle(
+                          color: Colors.grey[600],
+                          fontFamily: 'Poppins',
+                          fontWeight: FontWeight.w500,
+                          fontSize: 40),
+                    )),
+                  ),
+                ],
+              ),
+            ),
+            Expanded(
+              child: buildListViewbyIndex(),
+            )
+          ],
+        ),
       ),
     );
   }

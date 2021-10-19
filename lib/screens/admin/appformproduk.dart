@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
+import 'package:e_warung/env.dart';
 
 //AppForm untuk TextField CRUD pada Produk
 
@@ -23,43 +26,34 @@ class AppFormProduk extends StatefulWidget {
 }
 
 class _AppFormProduk extends State<AppFormProduk> {
-  final List _kategori = [
-    {'no': 1, 'keyword': 'Semua'},
-    {'no': 2, 'keyword': 'Sayur'},
-    {'no': 3, 'keyword': 'Daging'},
-    {'no': 4, 'keyword': 'Buah'},
-    {'no': 5, 'keyword': 'Kerajinan'}
-  ];
-  List<DropdownMenuItem> _dropdownkategori = [];
-  var _selectedkategori;
+  var selectedValue;
+  List categoryItemList = [];
+
+  Future getAllCategory() async {
+    final response =
+        await http.get(Uri.parse("${Env.URL_PREFIX}/list_kategori.php"));
+    if (response.statusCode == 200) {
+      var jsonData = json.decode(response.body);
+      setState(() {
+        categoryItemList = jsonData;
+      });
+    }
+  }
 
   final List _testList3 = [
-    {'no': 1, 'keyword': 'Semua'},
-    {'no': 2, 'keyword': 'Pcs'},
-    {'no': 3, 'keyword': 'Kg'},
-    {'no': 4, 'keyword': 'Paket'},
+    {'keyword': 'Semua'},
+    {'keyword': 'Pcs'},
+    {'keyword': 'Kg'},
+    {'keyword': 'Paket'},
   ];
   List<DropdownMenuItem> _dropdownTestItems3 = [];
   var _selectedTest3;
 
   @override
   void initState() {
-    _dropdownkategori = buildDropdownTestItems(_kategori);
-    _dropdownTestItems3 = buildDropdownTestItems(_testList3);
+    getAllCategory();
+    _dropdownTestItems3 = buildDropdownTestItems3(_testList3);
     super.initState();
-  }
-
-  List<DropdownMenuItem> buildDropdownTestItems(List _kategori) {
-    List<DropdownMenuItem> items = [];
-    for (var i in _kategori) {
-      items.add(
-        DropdownMenuItem(
-          value: i,
-          child: Text(i['keyword']),
-        ),
-      );
-    }
-    return items;
   }
 
   List<DropdownMenuItem> buildDropdownTestItems3(List _testList3) {
@@ -75,10 +69,10 @@ class _AppFormProduk extends State<AppFormProduk> {
     return items;
   }
 
-  onChangeDropdownTests(selectedkategori) {
-    print(selectedkategori);
+  onChangeDropdownTests2(value) {
+    print(value);
     setState(() {
-      _selectedkategori = selectedkategori;
+      selectedValue = value;
     });
   }
 
@@ -155,9 +149,12 @@ class _AppFormProduk extends State<AppFormProduk> {
               hint: const Text('Pilih Kategori',
                   style: TextStyle(
                       fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
-              value: _selectedkategori,
-              items: _dropdownkategori,
-              onChanged: onChangeDropdownTests,
+              value: selectedValue,
+              items: categoryItemList.map((kategori) {
+                return DropdownMenuItem(
+                    value: kategori['nama'], child: Text(kategori['nama']));
+              }).toList(),
+              onChanged: onChangeDropdownTests2,
             ),
           ),
           Container(
@@ -169,7 +166,7 @@ class _AppFormProduk extends State<AppFormProduk> {
                       fontFamily: 'Poppins', fontWeight: FontWeight.w400)),
               value: _selectedTest3,
               items: _dropdownTestItems3,
-              onChanged: onChangeDropdownTests,
+              onChanged: onChangeDropdownTests3,
             ),
           ),
         ],
