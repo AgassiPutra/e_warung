@@ -5,7 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:e_warung/screens/warung/profil.dart';
 import 'package:e_warung/screens/warung/katalog.dart';
 import 'package:e_warung/screens/warung/notifikasi.dart';
-import 'package:e_warung/screens/warung/list_produk_warung.dart';
+import 'package:e_warung/screens/warung/stok_warung.dart';
 
 
 class Dashboard extends StatelessWidget {
@@ -32,7 +32,7 @@ class _NavBarState extends State<NavBar> {
   late SharedPreferences sharedPreferences;
   int _selectedNavbar = 0;
   final List<Widget> _children = [
-    ListWarungProduk(),
+    StokWarung(),
     Katalog(),
     Notifikasi(),
     ProfileScreen(),

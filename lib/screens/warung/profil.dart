@@ -35,7 +35,7 @@ class MapScreenState extends State<ProfileScreen>
   Widget build(BuildContext context) {
     return new Scaffold(
         appBar: new AppBar(
-          title: Text('PROFIL'),
+          title: Text('Profil'),
           backgroundColor: Colors.blue,
           automaticallyImplyLeading: false,
           actions: [
